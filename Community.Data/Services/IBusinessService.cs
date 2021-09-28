@@ -5,7 +5,7 @@ using Community.Core.Models;
 
 namespace Community.Data.Services
 {
-    // This interface describes the operations that a UserService class should implement
+    // This interface describes the operations that a BusinessService class should implement
     public interface IBusinessService
     {
         // Initialise the repository - only to be used during development 

@@ -74,8 +74,8 @@ namespace Community.Web.Controllers
             return View(b);
 
         }
-
-        //GET
+// 
+        //GET.
         public IActionResult Create()
         {
             var b =  new Business();

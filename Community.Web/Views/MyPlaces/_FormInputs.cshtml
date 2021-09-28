@@ -1,0 +1,42 @@
+@model Business
+
+<div class="form-group">
+    <label asp-for="Title" class="control-label">Title</label>
+    <input asp-for="Title" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="form-group col">
+        <label asp-for="Type" class="control-label">Type</label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col">
+        <label asp-for="Address" class="control-label">Address</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label asp-for="Description" class="control-label">Description</label>
+    <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="form-group col">
+    <label asp-for="CommunityId" class="control-label">Community Id</label>
+    <input asp-for="CommunityId" class="form-control" />
+    <span asp-validation-for="CommunityId" class="text-danger"></span>
+</div>
+
+
+<!-- add PosterUrl input group - ensure input field type is url -->
+<div class="form-group">
+    <label asp-for="PosterUrl" class="control-label"></label>
+    <input type="url" asp-for="PosterUrl" class="form-control" />
+    <span asp-validation-for="PosterUrl" class="text-danger"></span>
+</div>
+<br>

@@ -1,0 +1,42 @@
+@model Review
+
+
+<div class="card rounded shadow p-3">
+    <h3 class="mt-4 mb-4">Add Review</h3>
+</div>
+
+<div class="card rounded shadow p-3">
+    <form asp-action="AddReview">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="BusinessId" class="form-control"/>   
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>   
+
+
+        <div class="form-group">
+            <label asp-for="Comment" class="control-label"></label>      
+            <textarea rows="5" placeholder="Enter your review" asp-for="Comment" class="form-control"></textarea>
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col">
+            <label asp-for="Rating" class="control-label">Rating</label>
+            <input asp-for="Rating" class="form-control"/>
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <br>
+          <input type="submit" value="Add" class="btn btn-primary"/>
+          <a class="btn btn-secondary" asp-action="Details" asp-route-id=@Model.Id>Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

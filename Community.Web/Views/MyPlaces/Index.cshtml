@@ -1,0 +1,43 @@
+@model IList<Business>
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPlaces") })>
+
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Business List</h3>
+     <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPlaces" asp-action="Create" asp-route-communityId="1">Create</a>
+</div>
+
+<div class="card rounded shadow p-3 ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Local Business</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var business in Model)
+            {
+                <tr>
+                    <td>@business.Title</td>
+                    <td>@business.Type</td>
+                    <td>@business.Address</td>
+                    
+                    <td>
+                        <a class="btn btn-primary" asp-controller="MyPlaces" asp-action="Details"
+                        asp-route-id="@business.Id">View</a>
+                        <a class="btn btn-info" asp-controller="MyPlaces" asp-action="Edit" asp-route-id=@business.Id>Edit</a>
+                        <a class="btn btn-danger" asp-controller="MyPlaces" asp-action="Delete"
+                        asp-route-id=@business.Id>Delete</a> 
+                    </td>
+                     
+                </tr>
+          
+            }<!--- Loop ends -->
+        </tbody>
+    </table>
+</div>

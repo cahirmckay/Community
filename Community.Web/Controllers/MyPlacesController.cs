@@ -76,10 +76,10 @@ namespace Community.Web.Controllers
         }
 
         //GET
-        public IActionResult Create(int communityId)
+        public IActionResult Create()
         {
             var b =  new Business();
-            b.CommunityId = communityId;
+            ;
             return View(b);
         }
 

@@ -102,7 +102,7 @@ namespace Community.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateProfile([Bind("Id,Name,Email,Age,Gender,Role")] UserManageViewModel m)       
+        public async Task<IActionResult> UpdateProfile([Bind("Id,Name,Email,Age,Gender,CommunityId,Role")] UserManageViewModel m)       
         {
             var user = _svc.GetUser(m.Id);
             // check if form is invalid and redisplay

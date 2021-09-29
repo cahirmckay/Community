@@ -15,9 +15,7 @@ namespace Community.Test
         public ServiceTests()
         {
             service = new UserServiceDb( 
-                  new DatabaseContext(
-                    new DbContextOptionsBuilder<DatabaseContext>().UseSqlite("Filename=data.db").Options
-                )
+                  new DatabaseContext()
                 );
             service.Initialise();
         }

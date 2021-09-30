@@ -94,17 +94,7 @@ namespace Community.Test
         [Fact]
         public void GetAllBusiness_WhenNone_ShouldReturn0()
         {
-            //arrenge
-            // var u = new User{
-                 
-            //      Name= "cax",
-            //      Email ="me@mail.com",
-            //      Age = 21,
-            //      Gender= "MAle",
-            //      CommunityId=1,
-            //      Password= "heloo",
-            //      Role = Role.Admin
-            // };
+            
             var u = userservice.AddUser("CAx", "me@mail.com", 21, "male", 1, "pwwww", Role.Admin);
             // act 
             var b = businessService.GetAllBusiness(u);

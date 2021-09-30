@@ -79,7 +79,7 @@ namespace Community.Web.Controllers
         public IActionResult Create()
         {
             var b =  new Business();
-            ;
+            
             return View(b);
         }
 
@@ -138,11 +138,12 @@ namespace Community.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            var user = userService.GetUser(GetSignedInUserId());
             var review = new Review
             {
                 BusinessId = id, 
                 CreatedOn = DateTime.Now,
-
+                Name = user.Name,
             };
 
             return View("AddReview", review);

@@ -8,14 +8,10 @@
 <div class="card rounded shadow p-3">
     <form asp-action="AddReview">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+        
+        <!-- user cant change the name on the review as their username will automatically be used instead-->
         <input type="hidden" asp-for="BusinessId" class="form-control"/>   
-        <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
-            <input asp-for="Name" class="form-control"/>
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>   
-
+        <input type="hidden" asp-for="Name" class="form-control"/>
 
         <div class="form-group">
             <label asp-for="Comment" class="control-label"></label>      

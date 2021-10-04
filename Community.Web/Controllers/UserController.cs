@@ -33,7 +33,7 @@ namespace Community.Web.Controllers
         {
             return View();
         }
-//test
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Email,Password")] UserLoginViewModel m)

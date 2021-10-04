@@ -43,6 +43,7 @@ namespace Community.Web
             // Add Services to DI        
             services.AddTransient<IUserService,UserServiceDb>();
             services.AddTransient<IBusinessService,BusinessServiceDb>();
+            services.AddTransient<IPhotoService,PhotoServiceDb>();
 
             // ** Required to enable asp-authorize Taghelper **            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

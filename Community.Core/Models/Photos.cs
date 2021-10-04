@@ -11,9 +11,7 @@ namespace Community.Core.Models
         
         public string PhotoTitle{get; set;}
 
-        public string PhotoPath{get; set;}
-
-        public string PhotoDescription{get; set;}
+        public byte[] PhotoData {get; set;}
 
         //EF forgien key
         [Required]

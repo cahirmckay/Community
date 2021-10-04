@@ -12,9 +12,9 @@ namespace Community.Data.Services
         void Initialise();
 
     
-        // IList<Photo> GetAllPhotos(User u);
-        // Photo GetPhoto(int id);
-        // Photo AddPhoto(Photo p);
+        IList<Photo> GetAllPhotos(User u);
+        Photo GetPhoto(int id);
+        Photo AddPhoto(Photo p);
         // bool DeletePhoto(int id);
         // bool UpdatePhoto(Photo p);
       

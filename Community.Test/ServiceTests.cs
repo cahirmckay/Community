@@ -12,11 +12,14 @@ namespace Community.Test
     {
         private IUserService userservice;
         private IBusinessService businessService;
+        private IPhotoService photoService;
+
 
         public ServiceTests()
         {
             userservice = new UserServiceDb(new DatabaseContext());
             businessService = new BusinessServiceDb( new DatabaseContext());
+            photoService = new PhotoServiceDb(new DatabaseContext());
             userservice.Initialise();
            
         }
@@ -175,20 +178,43 @@ namespace Community.Test
             b.Address = "new Test address";
             b.Description = "new Test";
             b.CommunityId =2;
-            PosterUrl = "http://photo1.com";
-            svc.UpdateMovie(b);
+            b.PosterUrl = "http://photo1.com";
+            businessService.UpdateBusiness(b);
 
             //Assert all properties have been updates
-            Assert.Equal(12, m.Id);  
-            Assert.Equal("New test title", m.Title);
-            Assert.Equal("New Test Director", m.Director);
-            Assert.Equal(1996, m.Year);
-            Assert.Equal(46, m.Duration);
-            Assert.Equal(235, m.Budget);
-            Assert.Equal("http://newphoto.com", m.PosterUrl);
-            Assert.Equal(Genre.SciFi, m.Genre);
-            Assert.Equal("New Test Actor1, Test Actor2", m.Cast);
-            Assert.Equal("New Test plot", m.Plot);
+            Assert.Equal(12, b.Id);  
+            Assert.Equal("New test title", b.Title);
+            Assert.Equal("New test type", b.Type);
+            Assert.Equal("new Test address", b.Address);
+            Assert.Equal("new Test", b.Description);
+            Assert.Equal(2, b.CommunityId);
+            Assert.Equal("http://photo1.com", b.PosterUrl);
+            
+        }
+
+
+
+
+
+        public void GetAllPhotos_WhenOne_ShouldReturn1()
+        {
+            //arrenge
+            var photo = new Photo{
+                PhotoTitle = "test title",
+                PhotoDescription = "Test",
+                CommunityId =1,
+                //PhotoData=  { 0, 100, 120, 210, 255}
+            };
+            photoService.AddPhoto(photo);
+            
+            var u = userservice.AddUser("CAx", "me@mail.com", 21, "male", 1, "pwwww", Role.Admin);
+            //act
+
+            var p = photoService.GetAllPhotos(u);
+            var count = p.Count;
+
+            // assert
+            Assert.Equal(1, count);
         }
 
     }

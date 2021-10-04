@@ -9,11 +9,12 @@ namespace Community.Core.Models
     {
         public int PhotoId{get; set;}
         
+        [Required]
         public string PhotoTitle{get; set;}
 
         public byte[] PhotoData {get; set;}
 
-        public string PhotoPath{get; set;}
+        public string PhotoDataUrl{get; set;}
 
         //EF forgien key
         [Required]

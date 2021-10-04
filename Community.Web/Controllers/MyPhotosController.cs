@@ -31,18 +31,6 @@ namespace Community.Web.Controllers
         {
             var user = userService.GetUser(GetSignedInUserId());
             var gallery = svc.GetAllPhotos(user);
-            foreach (var p in gallery)
-            {
-                var img = p;
-                string PhotoBase64Data =
-                Convert.ToBase64String(img.PhotoData);
-                string PhotoDataURL =
-                string.Format("data:Photo/jpg;base64,{0}",
-                PhotoBase64Data);
-                ViewBag.PhotoTitle = img.PhotoTitle;
-                ViewBag.PhotoDataUrl = PhotoDataURL;
-
-            }
             return View(gallery);
         }
 
@@ -60,6 +48,7 @@ namespace Community.Web.Controllers
             var files = HttpContext.Request.Form.Files;
             foreach (var file in files)
             {
+                
                 var img = new Photo();
                 img.PhotoTitle = file.FileName;
                 var user = userService.GetUser(GetSignedInUserId());
@@ -67,27 +56,26 @@ namespace Community.Web.Controllers
                 file.CopyTo(ms);
                 img.PhotoData = ms.ToArray();
                 img.CommunityId = user.CommunityId;
+                
                 ms.Close();
                 ms.Dispose();
 
-
-                // string PhotoBase64Data =
-                // Convert.ToBase64String(img.PhotoData);
-                // string PhotoDataURL =
-                // string.Format("data:Photo/jpg;base64,{0}",
-                // PhotoBase64Data);
-                // byte[] b1 = System.Text.Encoding.UTF8.GetBytes (PhotoDataURL);
-                // img.PhotoData = PhotoDataURL;
-                // ViewBag.PhotoTitle = img.PhotoTitle;
-                // ViewBag.PhotoDataUrl = PhotoDataURL;
-
+                string PhotoBase64Data = Convert.ToBase64String(img.PhotoData);
+                string PhotoDataURL = string.Format("data:Photo/jpg;base64,{0}", PhotoBase64Data);
                 
+                img.PhotoDataUrl = PhotoDataURL;
 
                 svc.AddPhoto(img);
                 if (img != null)
                 {
                     Alert($"{img.PhotoTitle} has been successfully added", AlertType.success);
                     //Redirects to see the newly added movie in the index page
+                    return RedirectToAction(nameof(Index));
+                }
+
+                if(img == null)
+                {
+                    Alert("No image selected", AlertType.warning);
                     return RedirectToAction(nameof(Index));
                 }
             }

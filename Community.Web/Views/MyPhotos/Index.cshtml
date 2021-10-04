@@ -1,42 +1,33 @@
 @model IList<Photo>
 
-    <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPhotos") })>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPhotos") })>
 
-<div class="card rounded shadow p-3">
-    <h3 class="mb-3">Gallery</h3>
-     <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPhotos" asp-action="Create">Create</a>
-</div>
-<!--<div> form inputs 
+    <div class="card rounded shadow p-3">
+        <h3 class="mb-3">Gallery</h3>
+        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPhotos" asp-action="Create">Create</a>
+    </div>
+    <!--<div> form inputs 
         <partial name="_RetrieveImage"/>
  </div>
 <h1>@ViewBag.Message</h1>
 <h1>@ViewBag.PhotoTitle</h1>
 <img src="@ViewBag.PhotoDataUrl" />-->
 
-<div class="card rounded shadow p-3 ">
-    <table class="table">
+    <div class="container card rounded shadow p-3 ">
+        <div class="col m-3 p-3">
 
-        <thead>
-            <tr>
-                <th>Name</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            
             @foreach (var p in Model)
             {
-                <tr>
-                    <td>@p.PhotoTitle</td>
-                    <td><img src="@ViewBag.PhotoDataUrl" width="300" height="300" /></td>
-                     
-                </tr>
-          
-            }<!--- Loop ends -->
-        </tbody>
-    </table>
-</div>
+                
+                    <!--- <td>p.PhotoTitle</td> -->
+                    <td><img src="@p.PhotoDataUrl" width="300" height="300" /></td>
+                
+            }
+            <!--- Loop ends -->
 
-@section Scripts {
+        </div>
+    </div>
+
+    @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    }

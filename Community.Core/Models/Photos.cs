@@ -13,6 +13,8 @@ namespace Community.Core.Models
 
         public byte[] PhotoData {get; set;}
 
+        public string PhotoPath{get; set;}
+
         //EF forgien key
         [Required]
         public int CommunityId {get; set;}

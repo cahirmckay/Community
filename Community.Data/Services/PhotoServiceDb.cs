@@ -38,7 +38,6 @@ namespace Community.Data.Services
         public Photo AddPhoto(Photo p)
         {
             ctx.Photos.Add(p);
-            
             ctx.SaveChanges();
             return p;
         }

@@ -31,15 +31,27 @@ namespace Community.Web.Controllers
         {
             var user = userService.GetUser(GetSignedInUserId());
             var gallery = svc.GetAllPhotos(user);
+            foreach (var p in gallery)
+            {
+                var img = p;
+                string PhotoBase64Data =
+                Convert.ToBase64String(img.PhotoData);
+                string PhotoDataURL =
+                string.Format("data:Photo/jpg;base64,{0}",
+                PhotoBase64Data);
+                ViewBag.PhotoTitle = img.PhotoTitle;
+                ViewBag.PhotoDataUrl = PhotoDataURL;
+
+            }
             return View(gallery);
         }
 
-         ///GET
+        ///GET
         public IActionResult Create()
         {
-             var p = new Photo();
+            var p = new Photo();
 
-             return View(p);
+            return View(p);
         }
 
         [HttpPost]
@@ -58,19 +70,32 @@ namespace Community.Web.Controllers
                 ms.Close();
                 ms.Dispose();
 
+
+                // string PhotoBase64Data =
+                // Convert.ToBase64String(img.PhotoData);
+                // string PhotoDataURL =
+                // string.Format("data:Photo/jpg;base64,{0}",
+                // PhotoBase64Data);
+                // byte[] b1 = System.Text.Encoding.UTF8.GetBytes (PhotoDataURL);
+                // img.PhotoData = PhotoDataURL;
+                // ViewBag.PhotoTitle = img.PhotoTitle;
+                // ViewBag.PhotoDataUrl = PhotoDataURL;
+
+                
+
                 svc.AddPhoto(img);
                 if (img != null)
-                 {
-                     Alert($"{p.PhotoTitle} has been successfully added", AlertType.success);
-                     //Redirects to see the newly added movie in the index page
-                     return RedirectToAction(nameof(Index));
-                 }
+                {
+                    Alert($"{img.PhotoTitle} has been successfully added", AlertType.success);
+                    //Redirects to see the newly added movie in the index page
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            
+
             return View("Index");
         }
 
-       
+
 
         // [HttpPost]
         // public IActionResult Create(Photo p)
@@ -88,18 +113,18 @@ namespace Community.Web.Controllers
 
         //     return View(p);
         // }
-        // [HttpPost]
-        // public ActionResult RetrieveImage()
-        // {
-        //     var user = userService.GetUser(GetSignedInUserId());
-        //     List<Photos> img = svc.GetAllPhotos(user);//.OrderByDescending
-        //     //(i => i.Id).SingleOrDefault();
-        //     string imageBase64Data = Convert.ToBase64String(img.PhotoData);
-        //     string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-        //     ViewBag.ImageTitle = img.PhotoTitle;
-        //     ViewBag.ImageDataUrl = imageDataURL;
-        //     return View("Index");
-        // }
+        //     [HttpPost]
+        //     public ActionResult RetrievePhoto(int id)
+        //     {
+        //         var user = userService.GetUser(GetSignedInUserId());
+        //         Photo img = svc.GetPhoto(id).OrderByDescending.
+        //         (i => i.Id).SingleOrDefault();
+        //         string PhotoBase64Data = Convert.ToBase64String(img.PhotoData);
+        //         string PhotoDataURL = string.Format("data:Photo/jpg;base64,{0}", PhotoBase64Data);
+        //         ViewBag.PhotoTitle = img.PhotoTitle;
+        //         ViewBag.PhotoDataUrl = PhotoDataURL;
+        //         return View("Index");
+        //     }
     }
 
 }

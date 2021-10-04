@@ -7,22 +7,19 @@
     </div>
 
     <div class="card rounded shadow p-3">
-        <form asp-action="Create"
-            
-
-            
-            method="post"
-            enctype="multipart/form-data">
-            <input type="file" id="file1" name="file1" multiple="multiple" />
-            
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div>
+                <input type="file" id="file1" name="file1" multiple="multiple" class="btn btn-info p-3 m-4"  />
+            </div>
 
             <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary"/>
-            <a class="btn btn-secondary" asp-action="Index">Cancel</a>
-        </div>-->
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+            </div>
 
         </form>
     </div>
+
 
 
     @section Scripts {

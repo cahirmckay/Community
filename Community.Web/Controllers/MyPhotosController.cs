@@ -50,7 +50,7 @@ namespace Community.Web.Controllers
             {
                 
                 var img = new Photo();
-                img.PhotoTitle = file.FileName;
+                img.PhotoTitle = p.PhotoTitle;
                 var user = userService.GetUser(GetSignedInUserId());
                 MemoryStream ms = new MemoryStream();
                 file.CopyTo(ms);
@@ -73,11 +73,6 @@ namespace Community.Web.Controllers
                     return RedirectToAction(nameof(Index));
                 }
 
-                if(img == null)
-                {
-                    Alert("No image selected", AlertType.warning);
-                    return RedirectToAction(nameof(Index));
-                }
             }
 
             return View("Index");

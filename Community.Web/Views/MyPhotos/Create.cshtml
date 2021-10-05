@@ -7,9 +7,17 @@
     </div>
 
     <div class="card rounded shadow p-3">
+
+
         <form asp-action="Create" method="post" enctype="multipart/form-data">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PhotoTitle" class="control-label">Title</label>
+                <input asp-for="PhotoTitle" class="form-control" />
+                <span asp-validation-for="PhotoTitle" class="text-danger"></span>
+            </div>
             <div>
-                <input type="file" id="file1" name="file1" multiple="multiple" class="btn btn-info p-3 m-4"  />
+                <input type="file" id="file1" name="file1" multiple="multiple" class="btn btn-info p-3 m-4" />
             </div>
 
             <div class="form-group">

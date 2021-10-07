@@ -193,15 +193,13 @@ namespace Community.Test
         }
 
 
-
-
-
+        [Fact]
         public void GetAllPhotos_WhenOne_ShouldReturn1()
         {
             //arrenge
             var photo = new Photo{
                 PhotoTitle = "test title",
-                PhotoDescription = "Test",
+                Description = "Test",
                 CommunityId =1,
                 //PhotoData=  { 0, 100, 120, 210, 255}
             };
@@ -209,6 +207,39 @@ namespace Community.Test
             
             var u = userservice.AddUser("CAx", "me@mail.com", 21, "male", 1, "pwwww", Role.Admin);
             //act
+
+            var p = photoService.GetAllPhotos(u);
+            var count = p.Count;
+
+            // assert
+            Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void DeleteOnePhoto_WhenOne_ShouldReturn1()
+        {
+            //arrenge
+            var photo = new Photo{
+                PhotoTitle = "test title",
+                Description = "Test",
+                CommunityId =1,
+                //PhotoData=  { 0, 100, 120, 210, 255}
+            };
+            photoService.AddPhoto(photo);
+
+            var photo1 = new Photo{
+                PhotoTitle = "test title",
+                Description = "Test",
+                CommunityId =1,
+                //PhotoData=  { 0, 100, 120, 210, 255}
+            };
+            photoService.AddPhoto(photo1);
+            
+            
+            var u = userservice.AddUser("CAx", "me@mail.com", 21, "male", 1, "pwwww", Role.Admin);
+            //act
+            
+            photoService.DeletePhoto(photo.PhotoId);
 
             var p = photoService.GetAllPhotos(u);
             var count = p.Count;

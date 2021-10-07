@@ -1,38 +1,39 @@
 @model Photo
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyPhotos", "MyPhotos"), ("","Details") })>
 
-<div class="card rounded shadow p-3">
-    <h3 class="mb-3">@Model.PhotoTitle</h3>
-</div>
-
-<div class="card shadow rounded p-3">
-    <div class="row pl-3">
-        <div class="col-4">
-            <img src="@Model.PhotoDataUrl" width="300" height="300" />
-        </div>
-        <!-- Details -->
-        <div class="col-8 pt-3">
-            <dl class="row">
-                <dt class="col-3">Title</dt>
-                <dd class="col-7">@Model.PhotoTitle</dd>
-                <dt class="col-3">ID</dt>
-                <dd class="col-7">@Model.PhotoId</dd>
-                <dt class="col-3">Description</dt>
-                <dd class="col-9">@Model.Description</dd>
-                
-            </dl>
-        </div>
+    <div class="card rounded shadow p-3">
+        <h3 class="mb-3">@Model.PhotoTitle</h3>
     </div>
 
-    <!-- action options -->
-    <div class="row pl-3 mt-3 ml-2">
-        <div class="col-4">
-            <a asp-controller="MyPhotos" asp-action="Index" class="btn btn-sm btn-primary mr-2">Gallery</a>
-           
-            <a class="btn btn-danger" asp-controller="MyPhotos" asp-action="Delete" asp-route-id=@Model.PhotoId>Delete</a> 
-            </button>
+    <div class="card shadow rounded p-3">
+        <div class="row pl-3">
+            <div class="col-4">
+                <img src="@Model.PhotoDataUrl" width="300" height="300" />
+            </div>
+            <!-- Details -->
+            <div class="col-8 pt-3">
+                <dl class="row">
+                    <dt class="col-3">Title</dt>
+                    <dd class="col-7">@Model.PhotoTitle</dd>
+                    <dt class="col-3">ID</dt>
+                    <dd class="col-7">@Model.PhotoId</dd>
+                    <dt class="col-3">Description</dt>
+                    <dd class="col-9">@Model.Description</dd>
+
+                </dl>
+            </div>
+        </div>
+
+        <!-- action options -->
+        <div class="row pl-3 mt-3 ml-2">
+            <div class="col-4">
+                <a asp-controller="MyPhotos" asp-action="Index" class="btn btn-sm btn-primary mr-2">Gallery</a>
+
+                <button class="btn btn-sm btn-danger mr-2" id="#myBtn" data-toggle="modal" data-target="#deletePhotoModal">Delete
+                </button>
+            </div>
+
         </div>
 
     </div>
-
-</div>
+    <partial name="_DeletePhotoModal" />

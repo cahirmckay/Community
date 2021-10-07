@@ -56,7 +56,7 @@ namespace Community.Web.Controllers
                 file.CopyTo(ms);
                 img.PhotoData = ms.ToArray();
                 img.CommunityId = user.CommunityId;
-                
+                img.Description = p.Description;
                 ms.Close();
                 ms.Dispose();
 

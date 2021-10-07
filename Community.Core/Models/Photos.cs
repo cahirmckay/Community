@@ -12,6 +12,8 @@ namespace Community.Core.Models
         [Required]
         public string PhotoTitle{get; set;}
 
+        public string Description{get; set;}
+
         public byte[] PhotoData {get; set;}
 
         public string PhotoDataUrl{get; set;}

@@ -15,7 +15,7 @@ namespace Community.Data.Services
         IList<Photo> GetAllPhotos(User u);
         Photo GetPhoto(int id);
         Photo AddPhoto(Photo p);
-        // bool DeletePhoto(int id);
+        bool DeletePhoto(int id);
         // bool UpdatePhoto(Photo p);
       
     }

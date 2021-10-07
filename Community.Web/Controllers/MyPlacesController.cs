@@ -92,7 +92,7 @@ namespace Community.Web.Controllers
                 if (added != null)
                 {
                     Alert($"{b.Title} has been successfully added", AlertType.success);
-                    //Redirects to see the newly added movie in the index page
+                    //Redirects to see the newly added business in the index page
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -126,13 +126,13 @@ namespace Community.Web.Controllers
         }
 
 
-        //-----Review Creation from movie view
-        //GET/ movie/addmovie
+        //-----Review Creation from business view
+        //GET/ business/addbusiness
         public IActionResult AddReview(int id)
         {
-            var movie = svc.GetBusiness(id);
+            var business = svc.GetBusiness(id);
 
-            if (movie == null)
+            if (business == null)
             {
                 Alert("Business does not exist", AlertType.warning);
                 return RedirectToAction(nameof(Index));
@@ -149,7 +149,7 @@ namespace Community.Web.Controllers
             return View("AddReview", review);
         }
 
-        //post /movie/addreview
+        //post /business/addreview
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddReview(Review r)
@@ -189,7 +189,7 @@ namespace Community.Web.Controllers
         public IActionResult DeleteConfirmReview(int id)
         {
             var review = svc.GetReviewById(id);
-            var movie = svc.GetBusiness(review.BusinessId);
+            var business = svc.GetBusiness(review.BusinessId);
             svc.DeleteReview(id);
             Alert($"Review by {review.Name} has deleted successfully", AlertType.success);
             //after deleting a review return to the assoiated business so the user can see it's been deleted

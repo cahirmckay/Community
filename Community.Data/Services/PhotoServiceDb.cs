@@ -42,10 +42,17 @@ namespace Community.Data.Services
             return p;
         }
 
-        // public bool DeletePhoto(int id)
-        // {
-
-        // }
+        public bool DeletePhoto(int id)
+        {
+            var photo = GetPhoto(id);
+            if (photo ==null)
+            {
+                return false;
+            }
+            ctx.Photos.Remove(photo);
+            ctx.SaveChanges();
+            return true;
+        }
 
         // public bool UpdatePhoto(Photo p)
         // {

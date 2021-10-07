@@ -78,36 +78,43 @@ namespace Community.Web.Controllers
             return View("Index");
         }
 
+        public IActionResult Details(int id)
+        {
+            var photo = svc.GetPhoto(id);
+            
+            if (photo == null)
+            {
+                Alert("Photo does not exist", AlertType.warning);
+                //return to index to look for Photo
+                return RedirectToAction(nameof(Index));
+                
+            }
+         
+            return View(photo);
+        } 
 
+        //get
+        public IActionResult Delete(int id)
+        {
+            var p = svc.GetPhoto(id);
 
-        // [HttpPost]
-        // public IActionResult Create(Photo p)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var added = svc.AddPhoto(p);
-        //         if (added != null)
-        //         {
-        //             Alert($"{p.PhotoTitle} has been successfully added", AlertType.success);
-        //             //Redirects to see the newly added movie in the index page
-        //             return RedirectToAction(nameof(Index));
-        //         }
-        //     }
+            if (p == null)
+            {
+                Alert("Photo does not exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(p);
+        }
 
-        //     return View(p);
-        // }
-        //     [HttpPost]
-        //     public ActionResult RetrievePhoto(int id)
-        //     {
-        //         var user = userService.GetUser(GetSignedInUserId());
-        //         Photo img = svc.GetPhoto(id).OrderByDescending.
-        //         (i => i.Id).SingleOrDefault();
-        //         string PhotoBase64Data = Convert.ToBase64String(img.PhotoData);
-        //         string PhotoDataURL = string.Format("data:Photo/jpg;base64,{0}", PhotoBase64Data);
-        //         ViewBag.PhotoTitle = img.PhotoTitle;
-        //         ViewBag.PhotoDataUrl = PhotoDataURL;
-        //         return View("Index");
-        //     }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirm(int id)
+        {
+            var p = svc.GetPhoto(id);
+            svc.DeletePhoto(id);
+            //Alert($"{p.PhotoTitle} has been deleted successfully", AlertType.success);
+            return RedirectToAction(nameof(Index));
+        }
     }
 
 }

@@ -2,10 +2,10 @@
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPhotos") })>
 
-<div class="card rounded shadow p-3">
+    <div class="card rounded shadow p-3">
         <h3 class="mb-3">Gallery</h3>
         <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPhotos" asp-action="Create">Create</a>
-</div>
+    </div>
     <!--<div> form inputs 
         <partial name="_RetrieveImage"/>
  </div>
@@ -13,19 +13,29 @@
 <h1>@ViewBag.PhotoTitle</h1>
 <img src="@ViewBag.PhotoDataUrl" />-->
 
-<div class="container card rounded shadow p-3 ">
-    <div class="col m-3">
+    <div class="container card rounded shadow p-3 ">
+        <div class="col m-3">
 
-        @foreach (var p in Model)
-        {
-            <!--- <td>p.PhotoTitle</td> -->
-            <td><img src="@p.PhotoDataUrl" width="300" height="300" /></td>
-        }
-        <!--- Loop ends -->
+            @foreach (var p in Model)
+            {
+                <!--- <td>p.PhotoTitle</td> -->
+                <div class="row">
+                    <div>
+                        <td>@p.PhotoId</td>
+                        <td><img src="@p.PhotoDataUrl" width="300" height="300" /></td>
+                    </div>
+                    <div>
+                        <a class="bi bi-arrows-fullscreen" asp-controller="MyPhotos" asp-action="Details"
+                        asp-route-id="@p.PhotoId"></a>
+                      
+                    </div>
+                </div>
+            }
+            <!--- Loop ends -->
 
-     </div>
-</div>
+        </div>
+    </div>
 
-@section Scripts {
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

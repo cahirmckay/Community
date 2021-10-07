@@ -57,7 +57,8 @@ namespace Community.Web
             if (env.IsDevelopment())
             {
                 // seed - using service provider to get Services from DI
-                Seeder.Seed(provider.GetService<IUserService>(), provider.GetService<IBusinessService>());
+                Seeder.Seed(provider.GetService<IUserService>(), provider.GetService<IBusinessService>(),
+                provider.GetService<IPhotoService>());
             }
             else
             {

@@ -64,7 +64,7 @@ namespace Community.Data.Services
             {
                 return false;
             }
-            business.Id = b.Id;
+            
             business.Title = b.Title;
             business.Type = b.Type;
             business.Address = b.Address;

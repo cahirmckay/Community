@@ -70,8 +70,6 @@ namespace Community.Data.Services
             business.Address = b.Address;
             business.Description = b.Description;
             business.PosterUrl = b.PosterUrl;
-            
-            
             ctx.SaveChanges();
             return true;
         }

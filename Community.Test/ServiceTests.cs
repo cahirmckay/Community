@@ -192,7 +192,235 @@ namespace Community.Test
             
         }
 
+        [Fact]
+        public void Business_DeleteBusiness_WhenExists_ShouldReturnTrue()
+        {
+            //arrange - create a test Business
+            var b = new Business{
+                Id = 12345234,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =1,
+                PosterUrl = "http://photo.com",
+            };
 
+            businessService.AddBusiness(b);
+            
+            //act delete business
+            var deleted = businessService.DeleteBusiness(b.Id);
+
+            //assert- business is deleted
+
+            Assert.True(deleted);
+
+        }
+
+        [Fact]
+        public void Business_GetBusinessByIdThatExists_ShouldReturnBusiness()
+        {
+            //arrange - create a test Business
+            var b = new Business{
+                Id = 12345234,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId = 1,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+
+            //Act- Get business by Id
+            var v2 = businessService.GetBusiness(b.Id);
+
+            //Assert equal-
+            Assert.Equal(v2,b);
+        }
+
+        [Fact]
+        public void Business_DeleteBusinessThatDoesntExist_ShouldReturnFalse()
+        {
+            //act delete business(bool) with Id of 0(doesnt exist)
+            var deleted = businessService.DeleteBusiness(0);
+
+            //Assert deleted returns false
+            Assert.False(deleted);
+
+
+        }
+
+        [Fact]
+        public void Business_AddBusiness_WhenCommunityIdMatchesUsersCommunityIs_ShouldAddOneToBusinessCount()
+        {
+            //arrange - create a test Business and user
+            var b = new Business{
+                Id = 12345234,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =1,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1,"guest", Role.Guest);
+            
+            //Act get businesses
+            var businesses = businessService.GetAllBusiness(user);
+            
+
+            //Assert count is plus one
+            Assert.Equal(1, businesses.Count);
+
+        }
+
+        [Fact]
+        public void Business_AddBusiness_WhenCommunityIdDoesntMatchUsersCommunityIs_ShouldntAddToBusinessCount()
+        {
+            //arrange - create a test Business and user
+            var b = new Business{
+                Id = 12345234,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =3,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1,"guest", Role.Guest);
+            
+            //Act get businesses
+            var businesses = businessService.GetAllBusiness(user);            
+
+            //Assert added business is not returned for this user
+            Assert.Equal(0, businesses.Count);
+            //Assert business is not null
+            Assert.NotNull(b);
+
+        }
+
+        [Fact]
+        public void Review_AddReview_ShouldAddOneToReviewCount()
+        {
+            //Arrenge- add a test business and review
+            var b = new Business
+            {
+                Id = 1,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =3,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+
+            var r1 = new Review
+            {
+                Name = "Cara", 
+                Comment = "Cheap convience store with friendly staff",
+                BusinessId = 1,
+                Rating = 8,
+            };
+            businessService.AddReview(r1);
+
+            var business = businessService.GetBusiness(b.Id);
+
+            //Assert Review was added
+            Assert.Equal(1, business.Reviews.Count);
+        }
+
+        [Fact]
+        public void Review_DeleteReview_WhenTwoExist_ShouldReturnOne()
+        {
+            //Arrenge- add a test business and review
+            var b = new Business
+            {
+                Id = 123,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =3,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+
+            var r1 = new Review
+            {
+                Id =1,
+                Name = "Cara", 
+                Comment = "Cheap convience store with friendly staff",
+                BusinessId = 123,
+                Rating = 8,
+            };
+            businessService.AddReview(r1);
+            var r2 = new Review
+            {
+                Id = 2,
+                Name = "Cahir", 
+                Comment = "great shop",
+                BusinessId = 123,
+                Rating = 6,
+            };
+            businessService.AddReview(r2);
+
+            //Act delete one review
+            businessService.DeleteReview(r1.Id);
+            
+            var business = businessService.GetBusiness(b.Id);
+
+            //Assert review was deleted
+            Assert.Equal(1, business.Reviews.Count);
+        }
+
+        [Fact]
+        public void Review_WhenAddingTwoRatings_ShouldReturnRatingAverageOutof100()
+        {
+            //Arrenge- add a test business and review
+            var b = new Business
+            {
+                Id = 1,
+                Title = "test title",
+                Type = "test type",
+                Address = "Test address",
+                Description = "Test",
+                CommunityId =3,
+                PosterUrl = "http://photo.com",
+            };
+            businessService.AddBusiness(b);
+
+            var r1 = new Review
+            {
+                Name = "Cara", 
+                Comment = "Cheap convience store with friendly staff",
+                BusinessId = 1,
+                Rating = 8,
+            };
+            businessService.AddReview(r1);
+            var r2 = new Review
+            {
+                Name = "Cahir", 
+                Comment = "great shop",
+                BusinessId = 1,
+                Rating = 6,
+            };
+            businessService.AddReview(r2);
+
+            
+            var business = businessService.GetBusiness(b.Id);
+
+            //Assert rating is average of both review
+            Assert.Equal(70, business.Rating);
+        }
+
+       
+        
+
+        //============MyPhotos Tests==============================
         [Fact]
         public void GetAllPhotos_WhenOne_ShouldReturn1()
         {

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 using Community.Core.Models;
 using Community.Data.Services;
-//MISC
+
 namespace Community.Web.Controllers
 {
     [Authorize]
@@ -42,7 +42,6 @@ namespace Community.Web.Controllers
                 Alert("Business does not exist", AlertType.warning);
                 //return to index to look for Business
                 return RedirectToAction(nameof(Index));
-                
             }
          
             return View(business);

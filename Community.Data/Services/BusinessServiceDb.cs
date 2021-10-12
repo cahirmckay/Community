@@ -85,7 +85,7 @@ namespace Community.Data.Services
 
         public Review AddReview(Review r)
         {
-            //Creates a new instance of a review so more than can be created for each movie
+            //Creates a new instance of a review so more than can be created for each business
             var review = new Review
             {
                 // Id created by Database 

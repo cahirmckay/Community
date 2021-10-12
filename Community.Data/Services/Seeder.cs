@@ -10,11 +10,12 @@ namespace Community.Data.Services
     {
         // use this class to seed the database with dummy 
         // test data using an services 
-         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps )
+         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps, IPostService postService)
         {
             svc.Initialise();
             bs.Initialise();
             ps.Initialise();
+            postService.Initialise();
 
             // add users
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);

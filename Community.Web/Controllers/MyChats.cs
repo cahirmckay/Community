@@ -169,7 +169,6 @@ namespace Community.Web.Controllers
         //GET
         public IActionResult DeleteComment(int id)
         {
-            
             var comment = svc.GetCommentById(id);
 
             if (comment == null)

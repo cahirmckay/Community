@@ -17,6 +17,8 @@ namespace Community.Data.Repositories
         public DbSet<Business> Businesses { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Post> Posts { get; set;}
+        public DbSet<Comment> Comments {get; set;}
 
         // Configure the context to use Specified database. We are using 
         // Sqlite database as it does not require any additional installations.

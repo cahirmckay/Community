@@ -15,8 +15,8 @@ namespace Community.Core.Models
 
     public class Post
     {
+        public string Name{get; set;}
         
-
         public DateTime CreatedOn { get; set; }
 
         public int Id{get; set;}

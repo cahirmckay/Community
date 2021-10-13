@@ -28,7 +28,7 @@ namespace Community.Data.Services
 
             return ctx.Posts
                         .Where(p => p.CommunityId == u.CommunityId)
-                        .Include(p => p.Comments)
+                        .OrderByDescending(p=>p.CreatedOn)
                         .ToList();            
         }
 
@@ -65,7 +65,8 @@ namespace Community.Data.Services
             {
                 return false;
             }
-            
+
+            post.Name = p.Name;
             post.PostType = p.PostType;
             post.CreatedOn = DateTime.Now;
             post.Id = p.Id;

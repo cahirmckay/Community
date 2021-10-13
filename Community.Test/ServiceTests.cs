@@ -13,6 +13,7 @@ namespace Community.Test
         private IUserService userservice;
         private IBusinessService businessService;
         private IPhotoService photoService;
+        private IPostService postService;
 
 
         public ServiceTests()
@@ -20,6 +21,7 @@ namespace Community.Test
             userservice = new UserServiceDb(new DatabaseContext());
             businessService = new BusinessServiceDb( new DatabaseContext());
             photoService = new PhotoServiceDb(new DatabaseContext());
+            postService = new PostServiceDb(new DatabaseContext());
             userservice.Initialise();
            
         }
@@ -581,6 +583,34 @@ namespace Community.Test
             Assert.Equal(0, photos.Count);
             //Assert business is not null
             Assert.NotNull(p);
+
+            ///========MyChats Unit Tests===============
+            
+        }
+
+        [Fact]
+        public void Post_DeletePost_WhenExists_ShouldReturnTrue()
+        {
+            //arrange - create a test Post
+            var post = new Post
+            {
+                Name = "James",
+                PostType = PostType.General,
+                Id = 1,
+                PostText ="C# 9.0 is taking shape, and I’d like to share our thinking on some of the major features we’re adding to this next version of the language."+
+                " With every new version of C# we strive for greater clarity and simplicity in common coding scenarios, and C# 9.0 is no exception. One particular focus this time is supporting terse and immutable representation of data shapes. Let’s dive in!",
+                CommunityId = 1,
+                CreatedOn = DateTime.Now
+            };
+            postService.AddPost(post);
+           
+            
+            //act delete Post
+           
+            var deleted = postService.DeletePost(post.Id);
+            //assert- Post is deleted
+
+            Assert.True(deleted);
 
         }
     }

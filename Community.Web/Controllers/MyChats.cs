@@ -82,6 +82,10 @@ namespace Community.Web.Controllers
         [HttpPost]
         public IActionResult Create(Post p)
         {
+            var user = userService.GetUser(GetSignedInUserId());
+            p.Name= user.Name;
+            p.CommunityId = user.CommunityId;
+            p.CreatedOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var added = svc.AddPost(p);

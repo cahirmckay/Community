@@ -1,6 +1,19 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.bg {
+  /* The image used */
+  background-image: url("https://document-export.canva.com/8QT5I/DAEsuT8QT5I/7/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20211013%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211013T102432Z&X-Amz-Expires=29964&X-Amz-Signature=0526f816ea4599da5f9253583562aee4da27c35b6cf377884d3a1918cb8bfd86&X-Amz-SignedHeaders=host&response-expires=Wed%2C%2013%20Oct%202021%2018%3A43%3A56%20GMT");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;

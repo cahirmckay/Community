@@ -1,13 +1,13 @@
 @model IList<Business>
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPlaces") })>
-
+<!--<div class = "container">--->
 <div class="card rounded shadow p-3">
     <h3 class="mb-3">Business List</h3>
      <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPlaces" asp-action="Create" >Create</a>
 </div>
 
-<div class="card rounded shadow p-3 ">
+<div class="shadow p-2" >
     <table class="table">
         <thead>
             <tr>
@@ -28,10 +28,10 @@
                     <td>@business.Address</td>
                     
                     <td>
-                        <a class="btn btn-primary" asp-controller="MyPlaces" asp-action="Details"
+                        <a class="btn btn-primary my-1 " style="width: 80px;" asp-controller="MyPlaces" asp-action="Details"
                         asp-route-id="@business.Id">View</a>
-                        <a class="btn btn-info" asp-controller="MyPlaces" asp-action="Edit" asp-route-id=@business.Id>Edit</a>
-                        <a class="btn btn-danger" asp-controller="MyPlaces" asp-action="Delete"
+                        <a class="btn btn-info my-1" style="width: 80px;" asp-controller="MyPlaces" asp-action="Edit" asp-route-id=@business.Id>Edit</a>
+                        <a class="btn btn-danger my-1" style="width: 80px;" asp-controller="MyPlaces" asp-action="Delete"
                         asp-route-id=@business.Id>Delete</a> 
                     </td>
                      

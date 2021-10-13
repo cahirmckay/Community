@@ -11,7 +11,7 @@ namespace Community.Core.Models
                 
         public int Id { get; set; }
         
-        // name of movie
+        // name of buiness
         [Required]
         public string Title { get; set; }
 

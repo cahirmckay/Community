@@ -19,7 +19,10 @@ namespace Community.Data.Repositories
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Post> Posts { get; set;}
         public DbSet<Comment> Comments {get; set;}
+        public DbSet<NewsArticle> NewsArticles { get; set;}
 
+
+        
         // Configure the context to use Specified database. We are using 
         // Sqlite database as it does not require any additional installations.
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

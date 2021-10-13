@@ -1,0 +1,30 @@
+@model Post
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyChats", "MyChats"), ("","Edit") })>
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Edit Post</h3>
+</div>
+
+<div class="card rounded shadow p-3">
+    
+    <form asp-action="Edit">
+        
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <!-- we hide the id as its not user editable but needs to be in the -->
+        <!-- form to ensure the Post passed to the controller is complete -->    
+        <input type="hidden" asp-for="Id" class="form-control"/>
+      
+        <partial name="_InputForms" />
+   
+        <!-- submit button and cancel link which navigates to Index action -->
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+            <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

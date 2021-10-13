@@ -1,0 +1,31 @@
+@model Post
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyChats", "MyChats"), ("","Details") }) />
+<partial name="_DeletePostModal" />
+<div class="card rounded shadow p-3" ">
+    <h3 class=" mb-3">@Model.Name's Post</h3>
+</div>
+
+<div class=" card rounded shadow p-3 text-centre my-4" style="justify-content: center;">
+    <table>
+        <tr>
+            <h3>@Model.Name</h3>
+            <td>(@Model.PostType)</td>
+        </tr>
+            <tr>
+                <td class="col-8">@Model.PostText</td>
+
+                <td class="col-1">
+                    <a class="btn btn-primary my-1" style="width: 80px;" asp-controller="MyChats" asp-action="Details"
+                        asp-route-id="@Model.Id">View</a>
+                    <a class="btn btn-info" style="width: 80px;" asp-controller="MyChats" asp-action="Edit"
+                        asp-route-id=@Model.Id>Edit</a>
+                    
+                    <button class="btn btn-danger my-1 " style="width: 80px;" data-toggle="modal" data-target="#deletePostModal">Delete
+                            </button> 
+                </td>
+            </tr>
+            <td class="col-1">@Model.CreatedOn</td>
+    </table>
+    
+</div>

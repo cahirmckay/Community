@@ -10,7 +10,7 @@ namespace Community.Core.Models
 {
     public enum PostType
     {
-        General, Help, 
+        General, Help, Resolved
     }
 
     public class Post

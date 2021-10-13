@@ -1,0 +1,34 @@
+@model Comment
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyChats", "MyChats"), ("","Add") })>
+
+<div class="card rounded shadow p-3">
+    <h3 class="mt-4 mb-4">Add comment</h3>
+</div>
+
+<div class="card rounded shadow p-3">
+    <form asp-action="AddComment">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <!-- user cant change the name on the review as their username will automatically be used instead-->
+        <input type="hidden" asp-for="PostId" class="form-control"/>   
+        <input type="hidden" asp-for="Name" class="form-control"/>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>      
+            <textarea rows="5" placeholder="Enter your review" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        
+        <div class="form-group">
+            <br>
+          <input type="submit" value="Add" class="btn btn-primary"/>
+          <a class="btn btn-secondary" asp-action="Details" asp-route-id=@Model.PostId>Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

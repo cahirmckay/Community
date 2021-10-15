@@ -14,7 +14,7 @@ namespace Community.Test
         private IBusinessService businessService;
         private IPhotoService photoService;
         private IPostService postService;
-
+        private INewsService newsService;
 
         public ServiceTests()
         {
@@ -22,6 +22,7 @@ namespace Community.Test
             businessService = new BusinessServiceDb( new DatabaseContext());
             photoService = new PhotoServiceDb(new DatabaseContext());
             postService = new PostServiceDb(new DatabaseContext());
+            newsService = new NewsServiceDb(new DatabaseContext());
             userservice.Initialise();
            
         }

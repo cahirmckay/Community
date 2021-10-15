@@ -10,12 +10,13 @@ namespace Community.Data.Services
     {
         // use this class to seed the database with dummy 
         // test data using an services 
-         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps, IPostService postService)
+         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps, IPostService postService, INewsService newsService)
         {
             svc.Initialise();
             bs.Initialise();
             ps.Initialise();
             postService.Initialise();
+            newsService.Initialise();
 
             // add users
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);
@@ -182,6 +183,19 @@ namespace Community.Data.Services
                 CreatedOn = DateTime.Now
             };
             postService.AddPost(post2);
+
+            //=========MyNews Seed Data=====================
+            
+            var newsArticle = new NewsArticle
+            {
+                Headline = " A LOCAL politician says she has been “inundated” with complaints about traffic issues in Kilrea. Politician 'inundated' with complaints on Kilrea traffic issues",
+                Source = "Derry Post",
+                ArticleUrl ="https://www.derrynow.com/news/county-derry-post/493268/politician-inundated-with-complaints-on-kilrea-traffic-issues.html",
+                CommunityId = 1,
+                CreatedOn = DateTime.Now
+
+            };
+            newsService.AddNewsArticle(newsArticle);
         }
     }
 } 

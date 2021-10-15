@@ -45,6 +45,7 @@ namespace Community.Web
             services.AddTransient<IBusinessService,BusinessServiceDb>();
             services.AddTransient<IPhotoService,PhotoServiceDb>();
             services.AddTransient<IPostService,PostServiceDb>();
+            services.AddTransient<INewsService,NewsServiceDb>();
 
             // ** Required to enable asp-authorize Taghelper **            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -59,7 +60,7 @@ namespace Community.Web
             {
                 // seed - using service provider to get Services from DI
                 Seeder.Seed(provider.GetService<IUserService>(), provider.GetService<IBusinessService>(),
-                provider.GetService<IPhotoService>(), provider.GetService<IPostService>());
+                provider.GetService<IPhotoService>(), provider.GetService<IPostService>(), provider.GetService<INewsService>());
             }
             else
             {

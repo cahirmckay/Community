@@ -54,10 +54,7 @@ namespace Community.Data.Services
             return true;
         }
 
-        // public bool UpdatePhoto(Photo p)
-        // {
-
-        // }
+        
       
     }
 }

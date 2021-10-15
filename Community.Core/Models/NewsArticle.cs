@@ -12,22 +12,15 @@ namespace Community.Core.Models
         
         // name of news article
         [Required]
-        public string Title { get; set; }
-
-        // type of business
-        [Required]        
-        public string Type { get; set; }
+        public string Headline { get; set; }
 
         [Required]        
-        public string Author { get; set; }
+        public string Source { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        // article text
-        [Required]
-        [StringLength(1000, MinimumLength = 10)]
-        public string Newstext { get; set; }
-
+        [UrlResource]
+        public string ArticleUrl { get; set;}
         //EF forgien key
         [Required]
         public int CommunityId {get; set;}

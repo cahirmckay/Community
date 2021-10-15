@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
 using Community.Core.Models;
 using Community.Data.Services;
-//MISC
+
 namespace Community.Web.Controllers
 {
     [Authorize]

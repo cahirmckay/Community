@@ -1,0 +1,22 @@
+@model NewsArticle
+
+<input type="hidden" asp-for="CommunityId" class="form-control"/>
+
+<div class="form-group col">
+    <label asp-for="Source" class="control-label">Source</label>
+    <input asp-for="Source" class="form-control" />
+    <span asp-validation-for="Source" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Headline" class="control-label">Headline</label>
+    <input asp-for="Headline" class="form-control" />
+    <span asp-validation-for="Headline" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="ArticleUrl" class="control-label"></label>
+    <input type="url" asp-for="ArticleUrl" class="form-control" />
+    <span asp-validation-for="ArticleUrl" class="text-danger"></span>
+</div>
+<br>

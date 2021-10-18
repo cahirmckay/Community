@@ -1,36 +1,39 @@
 @model IList<NewsArticle>
+ 
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyNews") }) /> 
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyNews") })>
+
 <div class="container">
     <div class="card rounded shadow p-3">
         <h3 class="mb-3">MyNews</h3>
-        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyNews" asp-action="Create">Add News Article Link</a>
+        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyNews" asp-action="Create">Add News Article
+            Link</a>
     </div>
 
 
-    <div class="shadow p-2" >
-    
-    @foreach (var news in Model)
-    {
-        <div class=" card rounded shadow  p-3 text-centre my-4" style="justify-content: center;">
-            <table>
-                <tr>
-                        <h3>@news.Headline</h3>
-                        <h5>From @news.Source</h5>  
-                </tr>
-                <tr>
-                        
-                    <td class = "col-1">
-                        <a href ="@news.ArticleUrl" class="btn btn-primary my-1" style="width: 80px;" 
-                        >View </a>
-                               
-                    </td>
-                        
-                    <td class = "col-1">@news.CreatedOn</td>
-            </table>
-        </div>
+    <div class="shadow p-2">
+
+        @foreach (var news in Model)
+        {
             
-    }
-        
+            <div class=" card rounded shadow  p-3 text-centre my-4" style="justify-content: center;">
+                <table>
+                    <tr>
+                        <h3>@news.Headline</h3>
+                        <h5>From @news.Source</h5>
+                    </tr>
+                    <tr>
+
+                        <td class="col-11">
+                            <a href="@news.ArticleUrl" class="btn btn-primary my-1" style="width: 80px;">View </a>
+                            <a asp-controller="MyNews" asp-action="Edit" asp-route-id="@news.Id"  class="btn  btn-info  mr-2" style="width: 80px;">Edit</a>
+                        </td>
+
+                        <td class="text-right">@news.CreatedOn</td>
+                </table>
+            </div>
+
+        }
+
     </div>
 </div>

@@ -1,48 +1,51 @@
 @model IList<Post>
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyChats") })>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyChats") }) />
+
 <div class="container">
     <div class="card rounded shadow p-3">
         <h3 class="mb-3">MyChats</h3>
-        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyChats" asp-action="Create">Join the conversation</a>
+        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyChats" asp-action="Create">Join the
+            conversation</a>
     </div>
 
-    
-        
-            @foreach (var post in Model)
-            {
-                //Create a string variable that can be added to the post div depending on the PostType
-                //"help" post are important so will appear highlighted in yellow
-                //Once resolved they can be edited to appear green
-                string colour ="";
-                @if (post.PostType ==PostType.Help)
-                {
-                    colour = "bg-warning";
-                }
-                else if(post.PostType == PostType.Resolved)
-                {
-                    colour = "bg-success";
-                }
-                
-                <div class=" card rounded shadow @colour p-3 text-centre my-4" style="justify-content: center;">
-                <table>
-                    <tr>
-                        <h3>@post.Name</h3>  
-                    </tr>
-                    <tr>
-                        <td class = "col-8">@post.PostText</td>
-                            <td class = "col-1">
-                                <a class="btn btn-primary my-1" style="width: 80px;" asp-controller="MyChats" asp-action="Details"
-                                asp-route-id="@post.Id">View</a>
-                                <a class="btn btn-info" style="width: 80px;" asp-controller="MyChats" asp-action="Edit" asp-route-id=@post.Id>Edit</a>
-                             
-                                
-                            </td>
-                        </tr>
-                        <td class = "col-1">@post.CreatedOn</td>
-                    </table>
-                </div>
-            }
-            <!--- Loop ends -->
-        
+
+
+    @foreach (var post in Model)
+    {
+        //Create a string variable that can be added to the post div depending on the PostType
+        //"help" post are important so will appear highlighted in yellow
+        //Once resolved they can be edited to appear green
+        string colour = "";
+        @if (post.PostType == PostType.Help)
+        {
+            colour = "bg-warning";
+        }
+        else if (post.PostType == PostType.Resolved)
+        {
+            colour = "bg-success";
+        }
+
+        <div class=" card rounded shadow @colour p-3 text-centre my-4" style="justify-content: center;">
+            <table>
+                <tr>
+                    <h3>@post.Name</h3>
+                </tr>
+                <tr>
+                    <td class="col-8">@post.PostText</td>
+                    <td class="col-1">
+                        <a class="btn btn-primary my-1" style="width: 80px;" asp-controller="MyChats" asp-action="Details"
+                        asp-route-id="@post.Id">View</a>
+                        <a class="btn btn-info" style="width: 80px;" asp-controller="MyChats" asp-action="Edit"
+                        asp-route-id=@post.Id>Edit</a>
+
+
+                    </td>
+                </tr>
+                <td class="col-1">@post.CreatedOn</td>
+            </table>
+        </div>
+    }
+    <!--- Loop ends -->
+
 </div>

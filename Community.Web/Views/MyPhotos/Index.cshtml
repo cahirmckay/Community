@@ -1,30 +1,30 @@
 @model IList<Photo>
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPhotos") })>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyPhotos") })/>
 
-    <div class="card rounded shadow p-3">
-        <h3 class="mb-3">Gallery</h3>
-        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPhotos" asp-action="Create">Create</a>
-    </div>
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Gallery</h3>
+    <a class="btn btn-sm btn-primary mb-3" asp-controller="MyPhotos" asp-action="Create">Create</a>
+</div>
 
-    <div class=" container">
-        <div class="row justify-content-between ">
+<div class=" container">
+    <div class="row justify-content-between ">
            
-            @foreach (var p in Model)
-            {
+        @foreach (var p in Model)
+        {
            
-            <div class= "col-4 my-1" > 
-                <div class ="card" >
-                    <a asp-controller="MyPhotos" asp-action="Details"asp-route-id="@p.PhotoId">
-                 <img src="@p.PhotoDataUrl"  class =" card-img-top mr-3"/></a> 
-                </div>
+        <div class= "col-4 my-1" > 
+            <div class ="card" >
+                <a asp-controller="MyPhotos" asp-action="Details"asp-route-id="@p.PhotoId">
+                <img src="@p.PhotoDataUrl"  class =" card-img-top mr-3"/></a> 
             </div>
+        </div>
                    
             }<!--- Loop ends -->
         
-        </div>
     </div>
+</div>
 
-    @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

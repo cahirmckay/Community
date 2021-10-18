@@ -856,5 +856,166 @@ namespace Community.Test
             //Assert comment was deleted
             Assert.Equal(1, post.Comments.Count);
         }
+
+        //==========MyNews Related Tests=====================
+        [Fact]
+        public void News_GetAllNews_WhenNone_ShouldReturn0()
+        {
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var news = newsService.GetAllNewsArticles(user);
+            Assert.Equal(0, news.Count);
+        }
+
+        [Fact]
+        public void News_GetAllNews_WhenOne_ShouldReturnOne()
+        {
+            var n = new NewsArticle
+            {
+                Id = 123,
+                Headline = "Test Headline",
+                Source ="Test Source",
+                ArticleUrl ="www.test.com",
+                CommunityId = 1
+            };
+            newsService.AddNewsArticle(n);
+
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var news = newsService.GetAllNewsArticles(user);
+
+
+            Assert.Equal(1, news.Count);
+        }
+
+        [Fact]
+        public void News_AddNews_WhenUnique_ShouldSetAllProperties()
+        {
+            var n = new NewsArticle
+            {
+                Id = 123,
+                Headline = "Test Headline",
+                Source ="Test Source",
+                ArticleUrl ="www.test.com",
+                CommunityId = 1
+            };
+            newsService.AddNewsArticle(n);
+
+            Assert.Equal(123, n.Id);
+            Assert.Equal("Test Headline", n.Headline);
+            Assert.Equal("Test Source", n.Source);
+            Assert.Equal("www.test.com", n.ArticleUrl);
+            Assert.Equal(1, n.CommunityId);
+        }
+
+        [Fact]
+        public void News_UpdateNews_WhenExists_ShouldUpdateAllProperties()
+        {
+            var n = new NewsArticle
+            {
+                Id = 1293,
+                Headline = "ALt Test Headline",
+                Source ="AltTest Source",
+                ArticleUrl ="www.alttest.com",
+                CommunityId = 2
+            };
+            newsService.AddNewsArticle(n);
+
+            n.Id = 123;
+            n.Headline = "Test Headline";
+            n.Source ="Test Source";
+            n.ArticleUrl ="www.test.com";
+            n.CommunityId = 1;
+
+            newsService.UpdateNewsArticle(n);
+
+            Assert.Equal(123, n.Id);
+            Assert.Equal("Test Headline", n.Headline);
+            Assert.Equal("Test Source", n.Source);
+            Assert.Equal("www.test.com", n.ArticleUrl);
+            Assert.Equal(1, n.CommunityId);
+        }
+
+        [Fact]
+        public void News_DeleteNews_WhenExists_ShouldReturnTrue()
+        {
+            var n = new NewsArticle
+            {
+                Id = 1293,
+                Headline = "ALt Test Headline",
+                Source ="AltTest Source",
+                ArticleUrl ="www.alttest.com",
+                CommunityId = 2
+            };
+            newsService.AddNewsArticle(n);
+
+            var deleted = newsService.DeleteNewsArticle(n.Id);
+
+            Assert.True(deleted);
+        }
+
+        [Fact]
+        public void News_GetNewsByIdThatExists_ShouldReturnNews()
+        {
+            var n = new NewsArticle
+            {
+                Id = 1293,
+                Headline = "ALt Test Headline",
+                Source ="AltTest Source",
+                ArticleUrl ="www.alttest.com",
+                CommunityId = 2
+            };
+            newsService.AddNewsArticle(n);
+
+            var news = newsService.GetNewsArticle(n.Id);
+
+            Assert.Equal(news, n);
+        }
+
+        [Fact]
+        public void News_DeleteNewsThatDoesntExist_ShouldReturnFalse()
+        {
+            var deleted = newsService.DeleteNewsArticle(0);
+
+            Assert.False(deleted);
+        }
+
+        [Fact]
+        public void News_AddNews_WhenCommunityIdMatchesUserCommunityId_ShouldAddOneToNewsCount()
+        {
+            var n = new NewsArticle
+            {
+                Id = 123,
+                Headline = "Test Headline",
+                Source ="Test Source",
+                ArticleUrl ="www.test.com",
+                CommunityId = 1
+            };
+            newsService.AddNewsArticle(n);
+
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var news = newsService.GetAllNewsArticles(user);
+
+
+            Assert.Equal(1, news.Count);
+        }
+
+        [Fact]
+        public void News_AddNews_WhenCommunityIdDoesntMatchUserCommunityId_ShouldNOTAddOneToNewsCount()
+        {
+            var n = new NewsArticle
+            {
+                Id = 123,
+                Headline = "Test Headline",
+                Source ="Test Source",
+                ArticleUrl ="www.test.com",
+                CommunityId = 2
+            };
+            newsService.AddNewsArticle(n);
+
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var news = newsService.GetAllNewsArticles(user);
+
+
+            Assert.Equal(0, news.Count);
+        }
     }
 }

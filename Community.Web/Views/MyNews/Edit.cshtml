@@ -1,30 +1,38 @@
 @model NewsArticle
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyNews", "MyNews"), ("","Edit") })>
-<div class="card rounded shadow p-3">
-    <h3 class="mb-3">Edit News Link</h3>
-</div>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyNews", "MyNews"), ("","Edit") }) />
+<partial name="_DeleteNewsModal" />
 
 <div class="card rounded shadow p-3">
-    
+    <h3 class="mb-3">Edit News Link</h3>
+    <div class="col-4">
+        <button class="btn btn-sm btn-danger mr-2"  data-toggle="modal" data-target="#deleteNewsModal">Delete
+        </button>
+    </div>
+</div>
+
+
+
+<div class="card rounded shadow p-3">
+
     <form asp-action="Edit">
-        
+
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        
+
         <!-- we hide the id as its not user editable but needs to be in the -->
-        <!-- form to ensure the Post passed to the controller is complete -->    
-        <input type="hidden" asp-for="Id" class="form-control"/>
-      
+        <!-- form to ensure the Post passed to the controller is complete -->
+        <input type="hidden" asp-for="Id" class="form-control" />
+
         <partial name="_InputForm" />
-   
+
         <!-- submit button and cancel link which navigates to Index action -->
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary"/>
+            <input type="submit" value="Save" class="btn btn-primary" />
             <a class="btn btn-secondary" asp-action="Index">Cancel</a>
         </div>
     </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

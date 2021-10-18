@@ -20,8 +20,5 @@ namespace Community.Data.Services
         Review GetReviewById(int id);
         Review AddReview(Review r);
         bool DeleteReview(int id);
-
-      
     }
-    
 }

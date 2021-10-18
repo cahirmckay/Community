@@ -20,6 +20,8 @@ namespace Community.Data.Repositories
         public DbSet<Post> Posts { get; set;}
         public DbSet<Comment> Comments {get; set;}
         public DbSet<NewsArticle> NewsArticles { get; set;}
+        public DbSet<Venue> Venues { get; set;}
+        public DbSet<Event> Events { get; set;}
 
 
         

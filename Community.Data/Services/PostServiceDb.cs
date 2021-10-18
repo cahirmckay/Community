@@ -95,7 +95,6 @@ namespace Community.Data.Services
                 Description = c.Description,     
                 Name = c.Name,
                 CreatedOn = DateTime.Now,
-                CommunityId = c.CommunityId,
                 PostId = c.PostId             
             };
 

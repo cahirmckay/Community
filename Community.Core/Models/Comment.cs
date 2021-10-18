@@ -17,8 +17,6 @@ namespace Community.Core.Models
 
         //EF forgien key
         [Required]
-        public int CommunityId {get; set;}
-
         public int PostId {get; set;}
 
         // Navigation property

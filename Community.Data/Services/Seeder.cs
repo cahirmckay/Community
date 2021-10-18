@@ -157,10 +157,10 @@ namespace Community.Data.Services
             var comment = new Comment
             {
                 CommentId = 1,
-                Description = "Wow thats so interesting",
+                Description = "I should look into this",
                 PostId = 1,
-                CommunityId = 1,
-                Name = "Harry"
+            
+                Name = "jake"
             };
             postService.AddComment(comment);
             var comment2 = new Comment
@@ -168,7 +168,6 @@ namespace Community.Data.Services
                 CommentId = 2,
                 Description = "Wow thats so interesting",
                 PostId = 1,
-                CommunityId = 1,
                 Name = "Harry"
             };
             postService.AddComment(comment2);

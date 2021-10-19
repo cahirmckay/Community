@@ -10,13 +10,15 @@ namespace Community.Data.Services
     {
         // use this class to seed the database with dummy 
         // test data using an services 
-         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps, IPostService postService, INewsService newsService)
+         public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps,
+          IPostService postService, INewsService newsService, IBookingService bookingService)
         {
             svc.Initialise();
             bs.Initialise();
             ps.Initialise();
             postService.Initialise();
             newsService.Initialise();
+            bookingService.Initialise();
 
             // add users
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);
@@ -195,6 +197,19 @@ namespace Community.Data.Services
 
             };
             newsService.AddNewsArticle(newsArticle);
+
+            //===========MyEvents seed data========================
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+            
         }
     }
 } 

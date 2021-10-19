@@ -15,6 +15,7 @@ namespace Community.Test
         private IPhotoService photoService;
         private IPostService postService;
         private INewsService newsService;
+        private IBookingService bookingService;
 
         public ServiceTests()
         {
@@ -23,6 +24,8 @@ namespace Community.Test
             photoService = new PhotoServiceDb(new DatabaseContext());
             postService = new PostServiceDb(new DatabaseContext());
             newsService = new NewsServiceDb(new DatabaseContext());
+            bookingService = new BookingServiceDb(new DatabaseContext());
+
             userservice.Initialise();
 
         }
@@ -1016,6 +1019,184 @@ namespace Community.Test
 
 
             Assert.Equal(0, news.Count);
+        }
+
+
+        //==========MyEvents Related Tests===============
+        [Fact]
+        public void Venue_GetAllVenues_WhenNone_ShouldReturn0()
+        {
+            //Arrange
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var venues = bookingService.GetAllVenues(user);
+
+            //assert
+            Assert.Equal(0, venues.Count);
+        }
+
+        [Fact]
+        public void Venue_GetAllVenues_WhenOneShouldReturnOne()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+            
+            //act
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
+            var venues = bookingService.GetAllVenues(user);
+
+            //assert
+            Assert.Equal(1, venues.Count);
+        }
+
+        [Fact]
+        public void Venue_AddVenue_WhenUnique_ShouldSetAllProperties()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+            
+            
+
+            //assert
+            Assert.Equal("The Marian Hall", venue.Name);
+            Assert.Equal("Marian Hall, Londonderry, Northern Ireland, BT48 8QX", venue.Address);
+            Assert.Equal("Former Ballroom", venue.Description );
+            Assert.Equal(1, venue.SocialDistance);
+            Assert.Equal(100, venue.OriginalCapacity);
+            Assert.Equal(1, venue.CommunityId);
+
+        }
+
+        [Fact]
+        public void Venue_UpdateVenue_WhenExists_ShouldUpdateAllProperties()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+            
+            //act
+            venue.Name ="Test";
+            venue.Address ="Test";
+            venue.Description ="Test";
+            venue.SocialDistance =2;
+            venue.OriginalCapacity = 200;
+            venue.CommunityId = 2;
+
+            //assert
+            Assert.Equal("Test", venue.Name);
+            Assert.Equal("Test", venue.Address);
+            Assert.Equal("Test", venue.Description );
+            Assert.Equal(2, venue.SocialDistance);
+            Assert.Equal(200, venue.OriginalCapacity);
+            Assert.Equal(2, venue.CommunityId);
+        }
+
+        [Fact]
+        public void Venue_DeleteVenue_WhenExists_ShouldReturnTrue()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+            
+            //act
+            var deleted = bookingService.DeleteVenue(venue.Id);
+
+            //assert
+            Assert.True(deleted);
+   
+        }
+
+        [Fact]
+        public void Venue_GetVenueByIdThatExists_ShouldReturnVenue()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+
+            //act
+            var v = bookingService.GetVenue(venue.Id);
+
+            //assert
+            Assert.Equal(venue, v);
+
+        }
+
+        [Fact]
+        public void Venue_DeleteVenue_ThatDoesntExist_ShouldReturnFalse()
+        {
+
+            //act
+            var deleted = bookingService.DeleteVenue(0);
+
+            //assert
+            Assert.False(deleted);
+
+        }
+
+        [Fact]
+        public void Venue_AddVenue_WhenCommunityIdDoesNOTMatchUsersCommunityId_ShouldNotAddOneToVenueCount()
+        {
+            //Arrange
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+
+            //act
+            var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 2, "guest", Role.Guest);
+            var venues = bookingService.GetAllVenues(user);
+
+            //assert
+            Assert.Equal(0, venues.Count);
+            
+
         }
     }
 }

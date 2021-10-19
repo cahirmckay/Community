@@ -20,5 +20,6 @@ namespace Community.Data.Services
         Event GetEventById(int id);
         Event AddEvent(Event e);
         bool DeleteEvent(int id);
+        bool UpdateEvent(Event e);
     }
 }

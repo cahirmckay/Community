@@ -9,7 +9,7 @@ namespace Community.Core.Models
 {
     public enum Status
     {
-        Confirmed, UnConfirmed
+        Confirmed, Unconfirmed
     }
     
     public class Event
@@ -19,9 +19,6 @@ namespace Community.Core.Models
         // name of venue
         [Required]
         public string Name { get; set; }
-
-        [Required]        
-        public string Address { get; set; }
 
         [Required]
         public DateTime StartTime{get; set;}
@@ -37,9 +34,6 @@ namespace Community.Core.Models
         [Required]
         public int VenueId {get; set;}
 
-        //EF forgien key
-        [Required]
-        public int CommunityId {get; set;}
 
         // Navigation property
         [JsonIgnore]

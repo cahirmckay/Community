@@ -89,13 +89,12 @@ namespace Community.Data.Services
             var ev = new Event
             {
                 Name = e.Name,
-                Address =e.Address,
                 StartTime = e.StartTime,
                 EndTime = e.EndTime,
-                CreatedOn= DateTime.Now,
+                CreatedOn= DateTime.Today,
                 Status = e.Status,
                 VenueId = e.VenueId,
-                CommunityId = e.CommunityId
+                
             };
 
             ctx.Events.Add(ev);
@@ -115,6 +114,22 @@ namespace Community.Data.Services
             var result = e.Venue.Events.Remove(e);
             ctx.SaveChanges();
             return result;
+        }
+
+        public bool UpdateEvent(Event e)
+        {
+            var ev = GetEventById(e.Id);
+            if (ev == null)
+            {
+                return false;
+            }
+            ev.Id = e.Id;
+            ev.Name = e.Name;
+            ev.StartTime = e.StartTime;
+            ev.EndTime = e.EndTime;
+            ev.Status = e.Status;
+            ctx.SaveChanges();
+            return true;
         }
         
     }

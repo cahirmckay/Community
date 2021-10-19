@@ -209,6 +209,18 @@ namespace Community.Data.Services
                 CommunityId= 1
             };
             bookingService.AddVenue(venue);
+
+            var ev = new Event
+            {
+                Name = "Christmas Party",
+                // 2021 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second
+                StartTime = new DateTime(2021, 12, 25, 10, 30, 00) ,
+                EndTime = new DateTime(2021, 12, 25, 18, 30, 00) ,
+                CreatedOn= DateTime.Today,
+                Status = Status.Confirmed,
+                VenueId = 1,
+            };
+            bookingService.AddEvent(ev);
             
         }
     }

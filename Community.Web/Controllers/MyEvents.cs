@@ -82,6 +82,7 @@ namespace Community.Web.Controllers
         public IActionResult Create(Venue v)
         {
             var user = userService.GetUser(GetSignedInUserId());
+            
             v.CommunityId = user.CommunityId;
             if (ModelState.IsValid)
             {
@@ -106,6 +107,104 @@ namespace Community.Web.Controllers
             svc.DeleteVenue(id);
             Alert($"{venue.Name} has been deleted", AlertType.success);
             return RedirectToAction(nameof(Index));
+        }
+
+        //-----Event Creation from venue view
+        //GET
+        public IActionResult AddEvent(int id)
+        {
+            var venue = svc.GetVenue(id);
+
+            if (venue == null)
+            {
+                Alert("Venue does not exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+
+            var user = userService.GetUser(GetSignedInUserId());
+
+            var booking = new Event
+            {
+                VenueId = id, 
+                CreatedOn = DateTime.Now,
+                Status = Status.Unconfirmed
+            };
+
+            return View("AddEvent", booking);
+        }
+
+        //post 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddEvent(Event e)
+        {
+            var venue = svc.GetVenue(e.VenueId);
+            
+            if (venue == null)
+            {
+                Alert($"NULL", AlertType.danger);
+                return RedirectToAction("Index");
+            }
+
+            if (ModelState.IsValid)
+            {
+                svc.AddEvent(e);
+                Alert($"Booking request at {venue.Name} has been made", AlertType.success);
+                return RedirectToAction("Details", new{ Id = e.VenueId});
+            }
+
+            return View("AddEvent", e);
+        }
+
+        //GET
+        public IActionResult DeleteEvent(int id)
+        {
+            
+            var e= svc.GetEventById(id);
+
+            if (e == null)
+            {
+                return NotFound();
+            }
+            //view delete event page
+            return View(e);
+        }
+
+        //GET
+        public IActionResult EditEvent(int id)
+        {
+            var e = svc.GetEventById(id);
+            if (e == null)
+            {
+                Alert("This booking does not exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(e);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditEvent(Event e)
+        {
+            if (ModelState.IsValid)
+            {
+                svc.UpdateEvent(e);
+                Alert("Booking has updated", AlertType.info);
+                return RedirectToAction("Details", new{ Id = e.VenueId});
+            }
+            return View("EditEvent", e);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmEvent(int id)
+        {
+            var ev = svc.GetEventById(id);
+            var venue = svc.GetVenue(ev.VenueId);
+            svc.DeleteEvent(id);
+            Alert($"Booking request by {ev.Name} has deleted successfully", AlertType.success);
+            //after deleting a booking return to the assoiated venue so the admin or mod can see it's been deleted
+            return RedirectToAction("Details", new{ Id = ev.VenueId});
         }
     }
 }

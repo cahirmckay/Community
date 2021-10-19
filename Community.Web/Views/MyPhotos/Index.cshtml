@@ -13,11 +13,11 @@
         @foreach (var p in Model)
         {
            
-        <div class= "col-4 my-1" > 
-            <div class ="card" >
+        <div class= " card col-3 my-1 pt-4 pb-5 pr-1" > 
+            
                 <a asp-controller="MyPhotos" asp-action="Details"asp-route-id="@p.PhotoId">
-                <img src="@p.PhotoDataUrl"  class =" card-img-top mr-3"/></a> 
-            </div>
+                <img src="@p.PhotoDataUrl"  class =" card-img-top "/></a> 
+            
         </div>
                    
             }<!--- Loop ends -->

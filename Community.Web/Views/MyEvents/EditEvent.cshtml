@@ -1,13 +1,14 @@
 @model Event
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Edit") })>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Edit") }) />
+<partial name="_DeleteEventModal" /> 
 <div class="card rounded shadow p-3">
     <h3 class="mt-4 mb-4">Edit booking request</h3>
 </div>
 
 <div class="card rounded shadow p-3">
     <form asp-action="EditEvent">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="VenueId" class="form-control" />
         <!-- form inputs -->
         <partial name="_EventInputForm" />
@@ -26,4 +27,7 @@
             <a class="btn btn-secondary" asp-action="Details" asp-route-id=@Model.Id>Cancel</a>
         </div>
     </form>
+    <button class="btn btn-danger my-1 " style="width: 100px;" data-toggle="modal" data-target="#deleteEventModal">Delete
+        Booking
+    </button>
 </div>

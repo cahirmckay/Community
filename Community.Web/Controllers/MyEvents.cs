@@ -202,7 +202,7 @@ namespace Community.Web.Controllers
             var ev = svc.GetEventById(id);
             var venue = svc.GetVenue(ev.VenueId);
             svc.DeleteEvent(id);
-            Alert($"Booking request by {ev.Name} has deleted successfully", AlertType.success);
+            Alert($"Booking request: {ev.Name}, has deleted successfully", AlertType.success);
             //after deleting a booking return to the assoiated venue so the admin or mod can see it's been deleted
             return RedirectToAction("Details", new{ Id = ev.VenueId});
         }

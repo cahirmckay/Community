@@ -1,97 +1,96 @@
 @model Venue
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Details") })>
-    <partial name="_DeleteVenueModal" />
-    <div class="card rounded shadow p-3">
-        <h3 class="mb-3">Venue Details</h3>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Details") }) />
+<partial name="_DeleteVenueModal" />
+
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Venue Details</h3>
+</div>
+
+<div class="card shadow rounded p-3">
+    <div class="row pl-3">
+
+        <!-- Details -->
+        <div class="col-8 pt-3">
+            <dl class="row">
+                <dt class="col-3">Name</dt>
+                <dd class="col-7">@Model.Name</dd>
+
+                <dt class="col-3">Address</dt>
+                <dd class="col-7">@Model.Address</dd>
+
+                <dt class="col-3">Description</dt>
+                <dd class="col-9">@Model.Description</dd>
+
+                <dt class="col-3">Original Capacity</dt>
+                <dd class="col-7">@Model.OriginalCapacity</dd>
+
+                <dt class="col-3">Current Capacity</dt>
+                <dd class="col-7">@Model.Capacity</dd>
+
+                <td>
+
+                    <button class="btn btn-danger my-1 " style="width: 80px;" data-toggle="modal"
+                        data-target="#deleteVenueModal">Delete
+                    </button>
+                </td>
+            </dl>
+        </div>
     </div>
 
-    <div class="card shadow rounded p-3">
-        <div class="row pl-3">
-
-            <!-- Details -->
-            <div class="col-8 pt-3">
-                <dl class="row">
-                    <dt class="col-3">Name</dt>
-                    <dd class="col-7">@Model.Name</dd>
-
-                    <dt class="col-3">Address</dt>
-                    <dd class="col-7">@Model.Address</dd>
-
-                    <dt class="col-3">Description</dt>
-                    <dd class="col-9">@Model.Description</dd>
-
-                    <dt class="col-3">Original Capacity</dt>
-                    <dd class="col-7">@Model.OriginalCapacity</dd>
-
-                    <dt class="col-3">Current Capacity</dt>
-                    <dd class="col-7">@Model.Capacity</dd>
-
-                    <td class="col-1">
-
-                        <button class="btn btn-danger my-1 " style="width: 80px;" data-toggle="modal"
-                            data-target="#deleteVenueModal">Delete
-                        </button>
-                    </td>
-                </dl>
-            </div>
-        </div>
-
-        <!-- action options -->
-        <div class="row pl-3 mt-3 ml-2">
-            <div class="col-4">
-                <a asp-action="AddEvent" asp-route-id="@Model.Id" class="btn btn-sm btn-info mr-2">
-                    <i class="bi bi-plus-square-dotted mr-1"></i> Make a booking request
-                </a>
-                <a asp-controller="MyEvents" asp-action="Index" class="btn btn-sm btn-primary mr-2">Index</a>
-                <a asp-controller="MyEvents" asp-action="Edit" asp-route-id="@Model.Id"
-                    class="btn btn-sm btn-secondary  mr-2">Edit</a>
-            </div>
-
+    <!-- action options -->
+    <div class="row pl-3 mt-3 ml-2">
+        <div class="col-4">
+            <a asp-action="AddEvent" asp-route-id="@Model.Id" class="btn btn-sm btn-info mr-2">
+                <i class="bi bi-plus-square-dotted mr-1"></i> Make a booking request
+            </a>
+            <a asp-controller="MyEvents" asp-action="Index" class="btn btn-sm btn-primary mr-2">Index</a>
+            <a asp-controller="MyEvents" asp-action="Edit" asp-route-id="@Model.Id"
+                class="btn btn-sm btn-secondary  mr-2">Edit</a>
         </div>
 
     </div>
-    <div class="card shadow rounded p-3 bg-light">
-        <table class="table">
-            <thead>
-                <tr class="row pl-5 bg-dark text-light">
-                    <th class="col-2">Event Name</th>
-                    <th class="col-1">Date</th>
-                    <th class="col-1">Start</th>
-                    <th class="col-1">End</th>
-                    <th class="col-2">Requested On</th>
-                    <th class="col-2">Status</th>
-                    <th class=></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- loop prints all bookings/events -->
-                @foreach (var e in Model.Events)
+
+</div>
+<div class="card shadow rounded p-3 bg-light">
+    <table class="table">
+        <thead>
+            <tr class="row pl-5 bg-dark text-light">
+                <th class="col-2">Event Name</th>
+                <th class="col-1">Date</th>
+                <th class="col-1">Start</th>
+                <th class="col-1">End</th>
+                <th class="col-2">Requested On</th>
+                <th class="col-2">Status</th>
+                <th class=></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- loop prints all bookings/events -->
+            @foreach (var e in Model.Events)
+            {
+                string colour = "bg-light";
+                @if (e.Status == Status.Confirmed)
                 {
-                    string colour = "bg-light";
-                    @if (e.Status == Status.Confirmed)
-                    {
-                        colour = "bg-success";
-                    }
-
-                    <tr class="row pl-5 @colour">
-                        <td class="col-2">@e.Name</td>
-                        <td class="col-1">@e.StartTime.ToString("ddd d MMM yyyy")</td>
-                        <td class="col-1">@e.StartTime.ToString("HH:mm")</td>
-                        <td class="col-1">@e.EndTime.ToString("HH:mm") </td>
-                        <td class="col-2">@e.CreatedOn.ToString("ddd d MMM yyyy")</td>
-                        <td class="col-2">@e.Status</td>
-                        <td class="col-1">
-                            <a asp-controller="MyEvents" asp-action="DeleteEvent" asp-route-id="@e.Id"
-                            class="btn btn-sm  btn-danger mr-2 my-1">Remove
-                                booking</a>
-
-                            <a asp-controller="MyEvents" asp-action="EditEvent" asp-route-id="@e.Id"
-                            class="btn btn-sm  btn-info mr-2 my-1">Edit
-                                booking</a>
-                        </td>
-                    </tr>
+                    colour = "bg-success";
                 }
 
-            </tbody>
-        </table>
-    </div>
+                <tr class="row pl-5 @colour">
+                    <td class="col-2">@e.Name</td>
+                    <td class="col-1">@e.StartTime.ToString("ddd d MMM yyyy")</td>
+                    <td class="col-1">@e.StartTime.ToString("HH:mm")</td>
+                    <td class="col-1">@e.EndTime.ToString("HH:mm") </td>
+                    <td class="col-2">@e.CreatedOn.ToString("ddd d MMM yyyy")</td>
+                    <td class="col-2">@e.Status</td>
+                    <td class="col-1">
+                        <a asp-controller="MyEvents" asp-action="EditEvent" asp-route-id="@e.Id"
+                        class="btn btn-sm  btn-info mr-2 my-1">Edit
+                            booking</a>
+
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

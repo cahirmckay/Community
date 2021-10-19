@@ -1,6 +1,6 @@
 @model Venue
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Details") })>
-
+<partial name="_DeleteVenueModal" />
 <div class="card rounded shadow p-3">
     <h3 class="mb-3">Venue Details</h3>
 </div>
@@ -26,6 +26,11 @@
                 <dt class="col-3">Current Capacity</dt>
                 <dd class="col-7">@Model.Capacity</dd>
                 
+                <td class="col-1">
+                    
+                    <button class="btn btn-danger my-1 " style="width: 80px;" data-toggle="modal" data-target="#deleteVenueModal">Delete
+                            </button> 
+                </td>
             </dl>
         </div>
     </div>

@@ -67,6 +67,8 @@ namespace Community.Data.Services
             venue.Name = v.Name;
             venue.Address = v.Address;
             venue.Description = v.Description;
+            venue.OriginalCapacity = v.OriginalCapacity;
+            venue.SocialDistance = v.SocialDistance;
             
             ctx.SaveChanges();
             return true;

@@ -1,8 +1,6 @@
 o
-DotNet Core 5 Clean Community Solution
+DotNet Core 5  Community Solution
 =====================================
-
-This .NET project community demonstrates concept of separation of concerns (SOC) and is a simple implementation of the Clean Architecture. When installed and used to create a new project, all references to ```Community``` should be replaced with the name of your project.
 
 ## Core Project
 
@@ -71,25 +69,3 @@ The community replaces the locally installed Bootstrap 4 with Bootstrap 5.0.1 de
     b. Conditional Display Tag
 
     * ```<p asp-condtion="@some_boolean_expression">Only displayed if the condition is true</p>```
-
-## Install Community
-
-To install this solution as a community (community name is **termonclean**)
-
-1. Download current version of the community
-
-    ``` $ git clone https://github.com/termon/DotNetCommunity.git```
-
-2. Install the community so it can be used by ```dotnet new``` command. Use the path (i.e the directory location)to the cloned community directory without trailing '/'
-
-Linux/macOS
-    
-``` $ dotnet new -i /path/DotNetCommunity```
-
-Windows
-
-``` c: dotnet new -i c:\path\DotNetCommunity```
-
-3. Once installed you can create a new project using this community
-
-    ``` dotnet new termonclean -o SolutionName```

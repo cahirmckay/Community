@@ -19,6 +19,29 @@ namespace Community.Core.Models
 
         public string Description { get; set; }
 
+        public int SocialDistance {get; set;}
+
+        public int OriginalCapacity {get; set;}
+
+        public int Capacity 
+        {
+            get
+            {
+                const int constant = 2;
+                int socialDistance = SocialDistance * constant;
+                
+                int cap = OriginalCapacity;
+
+                var newCap =  cap/socialDistance;
+                if(newCap==0)
+                {
+                    newCap = OriginalCapacity;
+                }
+
+                return newCap;
+            }
+        }
+
         //EF forgien key
         [Required]
         public int CommunityId {get; set;}

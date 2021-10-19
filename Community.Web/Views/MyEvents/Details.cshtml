@@ -1,0 +1,48 @@
+@model Venue
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Details") })>
+
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Venue Details</h3>
+</div>
+
+<div class="card shadow rounded p-3">
+    <div class="row pl-3">
+        
+        <!-- Details -->
+        <div class="col-8 pt-3">
+            <dl class="row">
+                <dt class="col-3">Name</dt>
+                <dd class="col-7">@Model.Name</dd>
+
+                <dt class="col-3">Address</dt>
+                <dd class="col-7">@Model.Address</dd>
+
+                <dt class="col-3">Description</dt>
+                <dd class="col-9">@Model.Description</dd>
+                
+                <dt class="col-3">Original Capacity</dt>
+                <dd class="col-7">@Model.OriginalCapacity</dd>
+
+                <dt class="col-3">Current Capacity</dt>
+                <dd class="col-7">@Model.Capacity</dd>
+                
+            </dl>
+        </div>
+    </div>
+
+    <!-- action options -->
+    @* <div class="row pl-3 mt-3 ml-2">
+        <div class="col-4">
+            <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-sm btn-info mr-2">
+                <i class="bi bi-plus-square-dotted mr-1"></i> Add review
+            </a>
+            <a asp-controller="MyPlaces" asp-action="Index" class="btn btn-sm btn-primary mr-2">Index</a>
+            <a asp-controller="MyPlaces" asp-action="Edit" asp-route-id="@Model.Id"  class="btn btn-sm btn-secondary  mr-2">Edit</a>
+            <a class="btn btn-danger" asp-controller="MyPlaces" asp-action="Delete" asp-route-id=@Model.Id>Delete</a> 
+
+            </button>
+        </div>
+
+    </div> *@
+
+</div>

@@ -472,7 +472,7 @@ namespace Community.Test
             photoService.AddPhoto(photo1);
 
             var u = userservice.AddUser("CAx", "me@mail.com", 21, "male", 1, "pwwww", Role.Admin);
-            
+
             //act
             photoService.DeletePhoto(photo.PhotoId);
 
@@ -594,7 +594,7 @@ namespace Community.Test
             // assert
             Assert.Equal(0, count);
         }
-       
+
         [Fact]
         public void Post_DeletePost_WhenExists_ShouldReturnTrue()
         {
@@ -640,7 +640,7 @@ namespace Community.Test
             var count = posts.Count;
 
             Assert.Equal(1, count);
-            
+
         }
 
         [Fact]
@@ -667,7 +667,7 @@ namespace Community.Test
                 " With every new version of C# we strive for greater clarity and simplicity in common coding scenarios, and C# 9.0 is no exception. One particular focus this time is supporting terse and immutable representation of data shapes. Let’s dive in!",
                  post.PostText);
             Assert.Equal(1, post.CommunityId);
-            
+
 
         }
 
@@ -687,11 +687,11 @@ namespace Community.Test
             postService.AddPost(post);
 
             post.Name = "James";
-            post.PostType= PostType.General;
+            post.PostType = PostType.General;
             post.Id = 1321;
             post.PostText = "C# 9.0 is taking shape, and I’d like to share our thinking on some of the major features we’re adding to this next version of the language." +
                 " With every new version of C# we strive for greater clarity and simplicity in common coding scenarios, and C# 9.0 is no exception. One particular focus this time is supporting terse and immutable representation of data shapes. Let’s dive in!";
-            post.CommunityId = 1; 
+            post.CommunityId = 1;
 
 
             Assert.NotNull(post);
@@ -817,7 +817,7 @@ namespace Community.Test
             //Assert Review was added
             Assert.Equal(1, post2.Comments.Count);
         }
-        
+
         [Fact]
         public void Comment_DeleteComment_WhenTwoExist_ShouldReturnOne()
         {
@@ -876,8 +876,8 @@ namespace Community.Test
             {
                 Id = 123,
                 Headline = "Test Headline",
-                Source ="Test Source",
-                ArticleUrl ="www.test.com",
+                Source = "Test Source",
+                ArticleUrl = "www.test.com",
                 CommunityId = 1
             };
             newsService.AddNewsArticle(n);
@@ -896,8 +896,8 @@ namespace Community.Test
             {
                 Id = 123,
                 Headline = "Test Headline",
-                Source ="Test Source",
-                ArticleUrl ="www.test.com",
+                Source = "Test Source",
+                ArticleUrl = "www.test.com",
                 CommunityId = 1
             };
             newsService.AddNewsArticle(n);
@@ -916,16 +916,16 @@ namespace Community.Test
             {
                 Id = 1293,
                 Headline = "ALt Test Headline",
-                Source ="AltTest Source",
-                ArticleUrl ="www.alttest.com",
+                Source = "AltTest Source",
+                ArticleUrl = "www.alttest.com",
                 CommunityId = 2
             };
             newsService.AddNewsArticle(n);
 
             n.Id = 123;
             n.Headline = "Test Headline";
-            n.Source ="Test Source";
-            n.ArticleUrl ="www.test.com";
+            n.Source = "Test Source";
+            n.ArticleUrl = "www.test.com";
             n.CommunityId = 1;
 
             newsService.UpdateNewsArticle(n);
@@ -944,8 +944,8 @@ namespace Community.Test
             {
                 Id = 1293,
                 Headline = "ALt Test Headline",
-                Source ="AltTest Source",
-                ArticleUrl ="www.alttest.com",
+                Source = "AltTest Source",
+                ArticleUrl = "www.alttest.com",
                 CommunityId = 2
             };
             newsService.AddNewsArticle(n);
@@ -962,8 +962,8 @@ namespace Community.Test
             {
                 Id = 1293,
                 Headline = "ALt Test Headline",
-                Source ="AltTest Source",
-                ArticleUrl ="www.alttest.com",
+                Source = "AltTest Source",
+                ArticleUrl = "www.alttest.com",
                 CommunityId = 2
             };
             newsService.AddNewsArticle(n);
@@ -988,8 +988,8 @@ namespace Community.Test
             {
                 Id = 123,
                 Headline = "Test Headline",
-                Source ="Test Source",
-                ArticleUrl ="www.test.com",
+                Source = "Test Source",
+                ArticleUrl = "www.test.com",
                 CommunityId = 1
             };
             newsService.AddNewsArticle(n);
@@ -1008,8 +1008,8 @@ namespace Community.Test
             {
                 Id = 123,
                 Headline = "Test Headline",
-                Source ="Test Source",
-                ArticleUrl ="www.test.com",
+                Source = "Test Source",
+                ArticleUrl = "www.test.com",
                 CommunityId = 2
             };
             newsService.AddNewsArticle(n);
@@ -1042,13 +1042,13 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
-            
+
             //act
             var user = userservice.AddUser("guest", "guest@mail.com", 63, "female", 1, "guest", Role.Guest);
             var venues = bookingService.GetAllVenues(user);
@@ -1065,19 +1065,19 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
-            
-            
+
+
 
             //assert
             Assert.Equal("The Marian Hall", venue.Name);
             Assert.Equal("Marian Hall, Londonderry, Northern Ireland, BT48 8QX", venue.Address);
-            Assert.Equal("Former Ballroom", venue.Description );
+            Assert.Equal("Former Ballroom", venue.Description);
             Assert.Equal(1, venue.SocialDistance);
             Assert.Equal(100, venue.OriginalCapacity);
             Assert.Equal(1, venue.CommunityId);
@@ -1092,25 +1092,25 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
-            
+
             //act
-            venue.Name ="Test";
-            venue.Address ="Test";
-            venue.Description ="Test";
-            venue.SocialDistance =2;
+            venue.Name = "Test";
+            venue.Address = "Test";
+            venue.Description = "Test";
+            venue.SocialDistance = 2;
             venue.OriginalCapacity = 200;
             venue.CommunityId = 2;
 
             //assert
             Assert.Equal("Test", venue.Name);
             Assert.Equal("Test", venue.Address);
-            Assert.Equal("Test", venue.Description );
+            Assert.Equal("Test", venue.Description);
             Assert.Equal(2, venue.SocialDistance);
             Assert.Equal(200, venue.OriginalCapacity);
             Assert.Equal(2, venue.CommunityId);
@@ -1124,19 +1124,19 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
-            
+
             //act
             var deleted = bookingService.DeleteVenue(venue.Id);
 
             //assert
             Assert.True(deleted);
-   
+
         }
 
         [Fact]
@@ -1147,10 +1147,10 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
 
@@ -1182,10 +1182,10 @@ namespace Community.Test
             {
                 Name = "The Marian Hall",
                 Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
-                Description ="Former Ballroom",
+                Description = "Former Ballroom",
                 SocialDistance = 1,
                 OriginalCapacity = 100,
-                CommunityId= 1
+                CommunityId = 1
             };
             bookingService.AddVenue(venue);
 
@@ -1195,8 +1195,85 @@ namespace Community.Test
 
             //assert
             Assert.Equal(0, venues.Count);
-            
+
+
+
 
         }
+
+        [Fact]
+        public void Event_AddEvent_ShouldAddOneToEventCount()
+        {
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+
+            var ev = new Event
+            {
+                Name = "Christmas Party",
+                // 2021 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second
+                StartTime = new DateTime(2021, 12, 25, 10, 30, 00) ,
+                EndTime = new DateTime(2021, 12, 25, 18, 30, 00) ,
+                CreatedOn= DateTime.Today,
+                Status = Status.Confirmed,
+                VenueId = 1,
+            };
+            bookingService.AddEvent(ev);
+
+            Assert.Equal(1,venue.Events.Count);
+        }
+
+        [Fact]
+        public void Event_DeleteEvent_WhenTwoExist_ShouldReturnOne()
+        {
+            var venue = new Venue
+            {
+                Name = "The Marian Hall",
+                Address = "Marian Hall, Londonderry, Northern Ireland, BT48 8QX",
+                Description ="Former Ballroom",
+                SocialDistance = 1,
+                OriginalCapacity = 100,
+                CommunityId= 1
+            };
+            bookingService.AddVenue(venue);
+
+            var e2 = new Event
+            {
+                Name = "Christmas Party",
+                // 2021 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second
+                StartTime = new DateTime(2021, 12, 25, 10, 30, 00) ,
+                EndTime = new DateTime(2021, 12, 25, 18, 30, 00) ,
+                CreatedOn= DateTime.Today,
+                Status = Status.Confirmed,
+                VenueId = 1,
+            };
+            bookingService.AddEvent(e2);
+
+            var e1 = new Event
+            {
+                Name = "Christmas Party",
+                // 2021 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second
+                StartTime = new DateTime(2021, 12, 25, 10, 30, 00) ,
+                EndTime = new DateTime(2021, 12, 25, 18, 30, 00) ,
+                CreatedOn= DateTime.Today,
+                Status = Status.Confirmed,
+                VenueId = 1,
+                Id =1
+            };
+            bookingService.AddEvent(e1);
+
+            bookingService.DeleteEvent(e1.Id);
+
+            //Assert comment was deleted
+            Assert.Equal(1, venue.Events.Count);
+        }
+        
     }
 }

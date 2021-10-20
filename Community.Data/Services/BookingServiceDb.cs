@@ -110,7 +110,7 @@ namespace Community.Data.Services
                 return false;
             }
             
-            //deletes one review
+            //deletes one event
             var result = e.Venue.Events.Remove(e);
             ctx.SaveChanges();
             return result;

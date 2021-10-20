@@ -14,6 +14,7 @@ namespace Community.Core.Models
     
     public class Event
     {
+        [Required]
         public int Id { get; set; }
         
         // name of venue

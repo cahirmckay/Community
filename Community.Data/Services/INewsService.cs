@@ -11,7 +11,7 @@ namespace Community.Data.Services
         // Initialise the repository - only to be used during development 
         void Initialise();
 
-        // ---------------- User Management --------------
+        // ---------------- News Management --------------
         IList<NewsArticle> GetAllNewsArticles(User u);
         NewsArticle GetNewsArticle(int id);
         NewsArticle AddNewsArticle(NewsArticle n);

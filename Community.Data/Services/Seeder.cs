@@ -246,6 +246,47 @@ namespace Community.Data.Services
                 IssueType = IssueType.Litter
             };
             environmentService.AddIssue(issue2);
+
+            var issue3 = new Issue
+            {
+                Id = 3,
+                Latitude = 51.40, 
+                Longitude = -0.17,
+                Description = "Traffic very slow here",
+                IssueType = IssueType.Traffic
+            };
+            environmentService.AddIssue(issue3);
+
+            var issue4 = new Issue
+            {
+                Id = 4,
+                Latitude = 54.50, 
+                Longitude = -6.85,
+                Description = "Massive pothole here, please take care",
+                IssueType = IssueType.Pothole
+            };
+            environmentService.AddIssue(issue4);
+
+
+            var issue5 = new Issue
+            {
+                Id = 5,
+                Latitude = 54.87, 
+                Longitude = -6.64,
+                Description = "Someone had threw a plastic bag full of rubbish out their car window",
+                IssueType = IssueType.Litter
+            };
+            environmentService.AddIssue(issue5);
+
+            var issue6 = new Issue
+            {
+                Id = 6,
+                Latitude = 54.76, 
+                Longitude = -6.46,
+                Description = "Bridge maintenance, take another route",
+                IssueType = IssueType.RoadWorks
+            };
+            environmentService.AddIssue(issue6);
             
         }
     }

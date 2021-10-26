@@ -35,11 +35,31 @@
         });
         @foreach (var issue in Model)
         {
+            
+            var icon= "";
+            @if (issue.IssueType == IssueType.Litter)
+            {
+                icon = "http://maps.google.com/mapfiles/kml/pal4/icon5.png";
+            }
+            else if (issue.IssueType == IssueType.Traffic)
+            {
+                icon = "http://maps.google.com/mapfiles/kml/pal2/icon47.png";
+            }
+            else if (issue.IssueType == IssueType.RoadWorks)
+            {
+                icon = "http://maps.google.com/mapfiles/kml/pal3/icon59.png";
+            }
+            else if (issue.IssueType == IssueType.Pothole)
+            {
+                icon = "http://maps.google.com/mapfiles/kml/pal3/icon37.png";
+            }
+
             <text>
             new google.maps.Marker({
             position: { lat: @issue.Latitude, lng: @issue.Longitude },
             map,
             title: "@issue.Description",
+            icon: "@icon"
         }); 
         </text>
     

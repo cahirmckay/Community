@@ -16,6 +16,7 @@ namespace Community.Test
         private IPostService postService;
         private INewsService newsService;
         private IBookingService bookingService;
+        private IEnvironmentService environmentService;
 
         public ServiceTests()
         {
@@ -25,6 +26,7 @@ namespace Community.Test
             postService = new PostServiceDb(new DatabaseContext());
             newsService = new NewsServiceDb(new DatabaseContext());
             bookingService = new BookingServiceDb(new DatabaseContext());
+            environmentService = new EnvironmentServiceDb(new DatabaseContext());
 
             userservice.Initialise();
 
@@ -1196,9 +1198,6 @@ namespace Community.Test
             //assert
             Assert.Equal(0, venues.Count);
 
-
-
-
         }
 
         [Fact]
@@ -1274,6 +1273,98 @@ namespace Community.Test
             //Assert comment was deleted
             Assert.Equal(1, venue.Events.Count);
         }
-        
+
+        //=========MyEnvironment Related===================
+
+         [Fact]
+        public void Issue_GetAllIssue_WhenOne_ShouldReturn1()
+        {
+            //arrenge
+            var i = new Issue
+            {
+                IssueType = IssueType.Traffic,
+                Description = "Test",
+                Latitude = 1.00,
+                Longitude = 2.00,
+            };
+            environmentService.AddIssue(i);
+
+            //act
+            var ic = environmentService.GetAllIssues();
+            var count = ic.Count;
+
+            // assert
+            Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void Issue_UpdateIssue_WhenExists_ShouldUpdateAllProperties()
+        {
+            //Arrange
+            var i = new Issue
+            {
+                IssueType = IssueType.Traffic,
+                Description = "Test",
+                Latitude = 1.00,
+                Longitude = 2.00,
+            };
+            environmentService.AddIssue(i);
+
+            //act
+            i.IssueType = IssueType.Pothole;
+            i.Description = "New Test";
+            i.Latitude = 3.22;
+            i.Longitude = 4.99;
+
+
+            //assert
+            Assert.Equal(IssueType.Pothole, i.IssueType);
+            Assert.Equal("New Test", i.Description);
+            Assert.Equal(3.22, i.Latitude);
+            Assert.Equal(4.99, i.Longitude);
+            
+        }
+
+        [Fact]
+        public void Issue_DeleteIssue_WhenExists_ShouldReturnTrue()
+        {
+            //Arrange
+            var i = new Issue
+            {
+                IssueType = IssueType.Traffic,
+                Description = "Test",
+                Latitude = 1.00,
+                Longitude = 2.00,
+            };
+            environmentService.AddIssue(i);
+
+            //act
+            var deleted = environmentService.DeleteIssue(i.Id);
+
+            //assert
+            Assert.True(deleted);
+
+        }
+
+        [Fact]
+        public void Issue_GetIssueByIdThatExists_ShouldReturnIssue()
+        {
+            //Arrange
+            var i = new Issue
+            {
+                IssueType = IssueType.Traffic,
+                Description = "Test",
+                Latitude = 1.00,
+                Longitude = 2.00,
+            };
+            environmentService.AddIssue(i);
+
+            //act
+            var issue = environmentService.GetIssue(i.Id);
+
+            //assert
+            Assert.Equal(issue, i);
+
+        }
     }
 }

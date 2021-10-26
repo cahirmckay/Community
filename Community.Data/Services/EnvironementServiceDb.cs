@@ -55,5 +55,21 @@ namespace Community.Data.Services
             return i;
         }
 
+        public bool UpdateIssue(Issue i)
+        {
+            var issue = GetIssue(i.Id);
+            if (issue == null)
+            {
+                return false;
+            }
+
+            issue.Description = i.Description;
+            issue.IssueType = i.IssueType;
+            issue.Longitude = i.Longitude;
+            issue.Latitude = i.Latitude;
+            ctx.SaveChanges();
+            return true;
+        }
+
     }
 }

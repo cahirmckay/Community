@@ -1,0 +1,48 @@
+@model Issue
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEnvironment", "MyEnvironment"), ("","Create") }) />
+
+<div class="card rounded shadow p-3">
+    <h3 class="mt-4 mb-4">Create Issue</h3>
+</div>
+
+<div class="card rounded shadow p-3">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="IssueType" class="control-label"></label>
+            <select asp-for="IssueType" class="form-control" asp-items="Html.GetEnumSelectList<IssueType>()">
+                <option>Select the type of issue you want to create</option>
+            </select>
+            <span asp-validation-for="IssueType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label">Description</label>
+            <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label asp-for="Latitude" class="control-label">Latitude</label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col">
+                <label asp-for="Longitude" class="control-label">Longitude</label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+        </div>
+
+    </form>
+</div>

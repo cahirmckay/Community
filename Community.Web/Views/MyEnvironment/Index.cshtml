@@ -1,6 +1,6 @@
 @model IList<Issue>
 
-
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyEnvironment") }) />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv_ia4DNxgULeECifIJ6kO0SBKbBJAr1Y"
     type="text/javascript">
 
@@ -11,6 +11,8 @@
         <div class="card rounded shadow p-3">
             <div>
                 <h1>My Environment</h1>
+                <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEnvironment" asp-action="Create">Add an issue</a>
+                <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEnvironment" asp-action="AdminIndex">Admin</a>
             </div>
             <div>
                 <asp:TextBox ID="txt_location" TextMode="MultiLine" Width="400px" Height="70px" runat="server">
@@ -58,14 +60,17 @@
             new google.maps.Marker({
             position: { lat: @issue.Latitude, lng: @issue.Longitude },
             map,
-            title: "@issue.Description",
-            icon: "@icon"
-        }); 
-        </text>
+            title: "No.@issue.Id, @issue.Description. ",
+            icon: "@icon",
+            animation:google.maps.Animation.DROP
+            }); 
+            </text>
     
         }
+        
     
     }
+    
     google.maps.event.addDomListener(window, 'load', initialize);
     
 </script>

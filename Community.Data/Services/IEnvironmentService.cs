@@ -16,6 +16,7 @@ namespace Community.Data.Services
         Issue GetIssue(int id);
         Issue AddIssue(Issue n);
         bool DeleteIssue(int id);
+        bool UpdateIssue(Issue s);
 
     }
     

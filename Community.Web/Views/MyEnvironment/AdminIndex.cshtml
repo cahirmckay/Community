@@ -1,0 +1,40 @@
+@model IList<Issue>
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEnvironment", "MyEnvironment"), ("","AdminOptions") })/>
+
+<!--<div class = "container">--->
+<div class="card rounded shadow p-3">
+    <h3 class="mb-3">Issue List(Administrator options)</h3>
+</div>
+
+<div class="shadow p-2" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Issue Type</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var issue in Model)
+            {
+                <tr>
+                    <td>@issue.Id</td>
+                    <td>@issue.Description</td>
+                    <td>@issue.IssueType</td>
+                    <td>
+                       <a asp-controller="MyEnvironment" asp-action="Edit" asp-route-id="@issue.Id"
+                        class="btn btn-sm btn-secondary  mr-2">Edit</a>
+                        
+                    </td>
+                     
+                </tr>
+          
+            }<!--- Loop ends -->
+        </tbody>
+    </table>
+</div>

@@ -224,6 +224,29 @@ namespace Community.Data.Services
             };
             bookingService.AddEvent(ev);
             
+
+            //===========MyEnvironment related data
+            var issue = new Issue
+            {
+                Id = 1,
+                Latitude = 54.67, 
+                Longitude = -6.66,
+                Description = "Traffic very slow in the morning here at the minute",
+                IssueType = IssueType.RoadWorks
+            };
+            environmentService.AddIssue(issue);
+
+
+            var issue2 = new Issue
+            {
+                Id = 2,
+                Latitude = 51.50, 
+                Longitude = -0.12,
+                Description = "Terrible litter here presently",
+                IssueType = IssueType.Litter
+            };
+            environmentService.AddIssue(issue2);
+            
         }
     }
 } 

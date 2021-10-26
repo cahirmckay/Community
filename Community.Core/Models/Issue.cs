@@ -17,7 +17,10 @@ namespace Community.Core.Models
 
         public double Longitude { get; set; }
 
-        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public IssueType IssueType {get; set;}
+
 
     }
 }

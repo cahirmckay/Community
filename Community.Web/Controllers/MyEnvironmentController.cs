@@ -24,8 +24,9 @@ namespace Community.Web.Controllers
 
         public IActionResult Index()
         {
+            var p = svc.GetAllIssues();
             
-            return View();
+            return View(p);
         }
 
         public IActionResult Details(int id)

@@ -36,8 +36,8 @@
                 <i class="bi bi-plus-square-dotted mr-1"></i> Add review
             </a>
             <a asp-controller="MyPlaces" asp-action="Index" class="btn btn-sm btn-primary mr-2">Index</a>
-            <a asp-controller="MyPlaces" asp-action="Edit" asp-route-id="@Model.Id"  class="btn btn-sm btn-secondary  mr-2">Edit</a>
-            <a class="btn btn-danger" asp-controller="MyPlaces" asp-action="Delete" asp-route-id=@Model.Id>Delete</a> 
+            <a asp-controller="MyPlaces" asp-action="Edit" asp-roles="Admin,Manager" asp-route-id="@Model.Id"  class="btn btn-sm btn-secondary  mr-2">Edit</a>
+            <a class="btn btn-danger" asp-roles="Admin,Manager" asp-controller="MyPlaces" asp-action="Delete" asp-route-id=@Model.Id>Delete</a> 
 
             </button>
         </div>
@@ -67,7 +67,7 @@
                     <td class="col-1">@r.Rating</td>
                     <td class="col-2">@r.CreatedOn</td>
                     <td class = "col-1">
-                        <a asp-controller="MyPlaces" asp-action="DeleteReview" asp-route-id="@r.Id"
+                        <a asp-controller="MyPlaces"  asp-roles="Admin,Manager" asp-action="DeleteReview" asp-route-id="@r.Id"
                         class="btn btn-sm  btn-danger mr-2">Remove
                             review </a>
                     </td>

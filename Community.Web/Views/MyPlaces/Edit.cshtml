@@ -1,11 +1,11 @@
 @model Business
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyPlaces", "MyPlaces"), ("","Edit") })>
-<div class="card rounded shadow p-3">
+<div asp-roles="Admin,Manager" class="card rounded shadow p-3">
     <h3 class="mb-3">Edit Business</h3>
 </div>
 
-<div class="card rounded shadow p-3">
+<div asp-roles="Admin,Manager" class="card rounded shadow p-3">
     
     <form asp-action="Edit">
         

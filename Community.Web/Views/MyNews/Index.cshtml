@@ -26,7 +26,7 @@
 
                         <td class="col-11">
                             <a href="@news.ArticleUrl" class="btn btn-primary my-1" style="width: 80px;">View </a>
-                            <a asp-controller="MyNews" asp-action="Edit" asp-route-id="@news.Id"  class="btn  btn-info  mr-2" style="width: 80px;">Edit</a>
+                            <a asp-controller="MyNews" asp-roles="Admin,Manager" asp-action="Edit" asp-route-id="@news.Id"  class="btn  btn-info  mr-2" style="width: 80px;">Edit</a>
                         </td>
 
                         <td class="text-right">@news.CreatedOn</td>

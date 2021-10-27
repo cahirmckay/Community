@@ -29,7 +29,7 @@
         <div class="col-4">
             <a asp-controller="MyPhotos" asp-action="Index" class="btn btn-sm btn-primary mr-2">Gallery</a>
 
-            <button class="btn btn-sm btn-danger mr-2" id="#myBtn" data-toggle="modal"
+            <button class="btn btn-sm btn-danger mr-2" asp-roles="Admin,Manager" id="#myBtn" data-toggle="modal"
                 data-target="#deletePhotoModal">Delete
             </button>
         </div>

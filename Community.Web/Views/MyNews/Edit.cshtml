@@ -3,7 +3,7 @@
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyNews", "MyNews"), ("","Edit") }) />
 <partial name="_DeleteNewsModal" />
 
-<div class="card rounded shadow p-3">
+<div asp-roles="Admin,Manager" class="card rounded shadow p-3">
     <h3 class="mb-3">Edit News Link</h3>
     <div class="col-4">
         <button class="btn btn-sm btn-danger mr-2"  data-toggle="modal" data-target="#deleteNewsModal">Delete
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="card rounded shadow p-3">
+<div asp-roles="Admin,Manager" class="card rounded shadow p-3">
 
     <form asp-action="Edit">
 

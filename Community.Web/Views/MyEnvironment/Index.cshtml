@@ -12,7 +12,7 @@
             <div>
                 <h1>My Environment</h1>
                 <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEnvironment" asp-action="Create">Add an issue</a>
-                <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEnvironment" asp-action="AdminIndex">Admin</a>
+                <a class="btn btn-sm btn-warning mb-3" asp-roles="Admin,Manager" asp-controller="MyEnvironment" asp-action="AdminIndex">Admin</a>
             </div>
             <div>
                 <asp:TextBox ID="txt_location" TextMode="MultiLine" Width="400px" Height="70px" runat="server">

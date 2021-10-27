@@ -30,7 +30,7 @@
                         <td>
                             <a class="btn btn-primary my-1 " style="width: 80px;" asp-controller="MyEvents" asp-action="Details"
                             asp-route-id="@venue.Id">View</a>
-                            <a class="btn btn-info my-1" style="width: 80px;" asp-controller="MyEvents" asp-action="Edit" asp-route-id=@venue.Id>Edit</a>
+                            <a class="btn btn-info my-1" style="width: 80px;" asp-roles="Admin,Manager" asp-controller="MyEvents" asp-action="Edit" asp-route-id=@venue.Id>Edit</a>
                         
                         </td>
                      

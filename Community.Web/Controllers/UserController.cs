@@ -28,6 +28,12 @@ namespace Community.Web.Controllers
             _svc = svc;
         }
 
+        public IActionResult Index()
+        {
+            var user = _svc.GetUser(GetSignedInUserId());
+            var u = _svc.GetCommunityUsers(user);
+            return View(u);
+        }
 
         public IActionResult Login()
         {
@@ -62,14 +68,14 @@ namespace Community.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register([Bind("Name,Email,Age,Gender,Password,PasswordConfirm,Role")] UserRegisterViewModel m)       
+        public IActionResult Register([Bind("Name,Email,Age,Gender,CommunityId,Password,PasswordConfirm,Role")] UserRegisterViewModel m)       
         {
             if (!ModelState.IsValid)
             {
                 return View(m);
             }
             // add user via service
-            var user = _svc.AddUser(m.Name, m.Email,m.Age, m.Gender, m.CommunityId, m.Password, m.Role);
+            var user = _svc.AddUser(m.Name, m.Email,m.Age, m.Gender, m.CommunityId, m.Password, Role.Guest);
             // check if error adding user and display warning
             if (user == null) {
                 Alert("There was a problem Registering. Please try again", AlertType.warning);
@@ -135,6 +141,31 @@ namespace Community.Web.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var user = _svc.GetUser(id);
+
+            if (user == null)
+            {
+                Alert("user does not exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, User u)
+        {
+            if (ModelState.IsValid)
+            {
+                _svc.AdminEditUser(u);
+                Alert($"{u.Name}'s profile has updated ", AlertType.info);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(u);
+
+        }
         // Change Password
         [Authorize]
         public IActionResult UpdatePassword()
@@ -173,6 +204,31 @@ namespace Community.Web.Controllers
             await SignInCookie(user);
 
             return RedirectToAction("Index","Home");
+        }
+
+        //GET
+        public IActionResult Delete(int id)
+        {
+            var u = _svc.GetUser(id);
+            
+
+            if (u == null)
+            {
+                Alert("User does not exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(u);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirm(int id)
+        {
+            var u = _svc.GetUser(id);
+            _svc.DeleteUser(id);
+            //Alert($"{u.Name}'s profile has been deleted successfully", AlertType.success);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

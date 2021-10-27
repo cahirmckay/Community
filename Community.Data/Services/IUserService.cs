@@ -13,12 +13,14 @@ namespace Community.Data.Services
 
         // ---------------- User Management --------------
         IList<User> GetUsers();
+        IList<User> GetCommunityUsers(User u);
         User GetUser(int id);
         User GetUserByEmail(string email, int? id);
         User AddUser(string name, string email, int age, string gender, int communityId, string password, Role role);
         User UpdateUser(User user);
         bool DeleteUser(int id);
         User Authenticate(string email, string password);
+        User AdminEditUser(User user);
        
     }
     

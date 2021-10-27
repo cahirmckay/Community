@@ -1,0 +1,45 @@
+@model IList<User>
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/User", "Users"), ("","AdminOptions") })/>
+
+<!--<div class = "container">--->
+<div asp-roles="Admin" class="card rounded shadow p-3">
+    <h3 class="mb-3">User List(Administrator options)</h3>
+</div>
+
+<div asp-roles="Admin" class="shadow p-2" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Role</th>
+                <th>Actions</th>        
+            </tr>
+        </thead>
+        <tbody>       
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Gender</td>
+                    <td>@user.Age</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id"
+                        class="btn btn-sm btn-secondary mr-2">Edit</a>
+                        <a asp-controller="User" asp-action="Delete" asp-route-id="@user.Id"
+                        class="btn btn-sm btn-danger mr-2">Delete</a>
+                    </td>
+                     
+                </tr>
+          
+            }<!--- Loop ends -->
+        </tbody>
+    </table>
+</div>

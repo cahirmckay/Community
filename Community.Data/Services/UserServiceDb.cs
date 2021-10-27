@@ -28,6 +28,12 @@ namespace Community.Data.Services
         {
             return ctx.Users.ToList();
         }
+        public IList<User> GetCommunityUsers(User u)
+        {
+            return ctx.Users
+                            .Where(a => a.CommunityId == u.CommunityId)
+                            .ToList();
+        }
 
         // Retrive User by Id 
         public User GetUser(int id)
@@ -112,6 +118,27 @@ namespace Community.Data.Services
             // Verify the user exists and Hashed User password matches the password provided
             return (user != null && Hasher.ValidateHash(user.Password, password)) ? user : null;
             //return (user != null && user.Password == password ) ? user: null;
+        }
+
+        // Update the User with the details in updated 
+        public User AdminEditUser(User updated)
+        {
+            // verify the User exists
+            var User = GetUser(updated.Id);
+            if (User == null)
+            {
+                return null;
+            }
+            // update the details of the User retrieved and save
+            User.Name = updated.Name;
+            User.Email = updated.Email;
+            User.Age = updated.Age;
+            User.Gender = updated.Gender;
+            User.CommunityId = updated.CommunityId;
+            User.Role = updated.Role; 
+            
+            ctx.SaveChanges();          
+            return User;
         }
 
     }

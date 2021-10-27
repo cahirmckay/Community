@@ -24,6 +24,7 @@ namespace Community.Data.Services
 
             // add users
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);
+            svc.AddUser("C1 Guest", "c@mail.com", 34, "male", 1,"pw",  Role.Guest);
             svc.AddUser("Manager", "manager@mail.com", 34, "female", 2, "manager" ,Role.Manager);
             svc.AddUser("Guest", "guest@mail.com",  62, "other", 3, "guest",  Role.Guest);    
 

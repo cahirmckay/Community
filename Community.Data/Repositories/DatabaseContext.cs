@@ -23,7 +23,7 @@ namespace Community.Data.Repositories
         public DbSet<Venue> Venues { get; set;}
         public DbSet<Event> Events { get; set;}
         public DbSet<Issue> Issues {get; set;}
-        public DbSet<CommUnity> Communities {get; set;}
+        public DbSet<Location> Locations {get; set;}
 
 
         

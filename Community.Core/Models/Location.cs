@@ -5,12 +5,15 @@ using Community.Data.Validators;
 
 namespace Community.Core.Models
 { 
-    public class CommUnity
+    public class Location
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Description {get; set;}
         
     }
 }

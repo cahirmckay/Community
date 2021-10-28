@@ -1,4 +1,7 @@
 @model NewsArticle
+@{
+    ViewData["Title"] = "MyNews | C+";
+}
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyNews", "MyNews"), ("","Edit") }) />
 <partial name="_DeleteNewsModal" />

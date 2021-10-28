@@ -24,7 +24,9 @@
         </div>
     </form>
 </div>
-
+@{
+    ViewData["Title"] = "MyPlaces | C+";
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

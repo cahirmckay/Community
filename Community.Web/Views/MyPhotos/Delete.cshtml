@@ -1,38 +1,40 @@
 @model Photo
+@{
+    ViewData["Title"] = "MyPhotos | C+";
+}
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyPhotos", "MyPhotos"), ("","Delete") }) />
+<div class="card rounded shadow p-3">
+    <h3 class="mt-4 mb-4">Delete Photo?</h3>
 
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyPhotos", "MyPhotos"), ("","Delete") })>
-    <div class="card rounded shadow p-3">
-        <h3 class="mt-4 mb-4">Delete Photo?</h3>
+    <h4 class="mb-4">Are you sure you want to delete this Photo?</h4>
+</div>
 
-        <h4 class="mb-4">Are you sure you want to delete this Photo?</h4>
-    </div>
-
-    <div>
-        <div class="col card rounded shadow p-3">
-            <div class="row pl-3">
-                <div class="col-4">
-                    <img src="@Model.PhotoDataUrl" width="300" height="300" />
-                </div>
-                <div class="col-8 pt-3">
-                    <dl class="row">
-                        <dt class="col-5">Title</dt>
-                        <dd class="col-7">@Model.PhotoTitle</dd>
-                        <dt class="col-5">Description</dt>
-                        <dd class="col-7">@Model.Description</dd>
-                        <dt class="col-3">ID</dt>
-                        <dd class="col-7">@Model.PhotoId</dd>
-                    </dl>
-                </div>
+<div>
+    <div class="col card rounded shadow p-3">
+        <div class="row pl-3">
+            <div class="col-4">
+                <img src="@Model.PhotoDataUrl" width="300" height="300" />
+            </div>
+            <div class="col-8 pt-3">
+                <dl class="row">
+                    <dt class="col-5">Title</dt>
+                    <dd class="col-7">@Model.PhotoTitle</dd>
+                    <dt class="col-5">Description</dt>
+                    <dd class="col-7">@Model.Description</dd>
+                    <dt class="col-3">ID</dt>
+                    <dd class="col-7">@Model.PhotoId</dd>
+                </dl>
             </div>
         </div>
-
-        <div class="mt-4">
-
-            <form asp-controller="MyPhotos" asp-action="DeleteConfirm" type="post" asp-route-id="@Model.PhotoId">
-                <input type="hidden" asp-route-id="PhotoId" />
-                <input type="submit" value="Confirm" class="btn btn-danger" />
-                <a class="btn btn-secondary" asp-controller="MyPhotos" asp-action="Details"
-                    asp-route-id="@Model.PhotoId">Cancel</a>
-            </form>
-        </div>
     </div>
+
+    <div class="mt-4">
+
+        <form asp-controller="MyPhotos" asp-action="DeleteConfirm" type="post" asp-route-id="@Model.PhotoId">
+            <input type="hidden" asp-route-id="PhotoId" />
+            <input type="submit" value="Confirm" class="btn btn-danger" />
+            <a class="btn btn-secondary" asp-controller="MyPhotos" asp-action="Details"
+                asp-route-id="@Model.PhotoId">Cancel</a>
+        </form>
+    </div>
+</div>

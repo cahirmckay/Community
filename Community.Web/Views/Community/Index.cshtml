@@ -1,0 +1,43 @@
+@model IList<Location>
+@{
+    ViewData["Title"] = "Comunities | C+";
+}
+
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("","Communities") })/>
+
+
+<!--<div class = "container">--->
+<div  class="card rounded shadow p-3">
+    <h3 class="mb-3">Communites List</h3>
+    <a class="btn btn-sm btn-primary mb-3" asp-controller="Community" asp-action="Create" >Create</a>
+</div>
+
+<div  class="shadow p-2" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th> 
+                <th>Actions</th>        
+            </tr>
+        </thead>
+        <tbody>       
+            @foreach (var location in Model)
+            {
+                <tr>
+                    <td>@location.Id</td>
+                    <td>@location.Name</td>
+                    <td>@location.Description</td>
+               
+                    <td>
+                        <a asp-controller="Community" asp-roles="Admin,Manager" asp-action="Edit" asp-route-id="@location.Id"
+                        class="btn btn-sm btn-secondary mr-2">Edit</a>
+                    </td> 
+                     
+                </tr>
+          
+            }<!--- Loop ends -->
+        </tbody>
+    </table>
+</div>

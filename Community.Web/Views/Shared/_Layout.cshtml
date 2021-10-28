@@ -22,8 +22,8 @@
                     <div class="navbar-nav flex-grow-1">
                         <a class="nav-link text-dark active" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>    
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Secure">Secure</a>
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="DashBoard">DashBoard</a>
+                        <a class="nav-link text-dark"asp-roles="Admin, Manager, Guest" asp-controller="Home" asp-action="DashBoard">DashBoard</a>
+                        <a class="nav-link text-dark" asp-controller="Community" asp-action="Index">Communities</a>
                         
                     </div>         
 

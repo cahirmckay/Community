@@ -1,5 +1,9 @@
 @model Event
 
+@{
+    ViewData["Title"] = "MyEvents | C+";
+}
+
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Edit") }) />
 <partial name="_DeleteEventModal" /> 
 <div asp-roles="Admin,Manager" class="card rounded shadow p-3">

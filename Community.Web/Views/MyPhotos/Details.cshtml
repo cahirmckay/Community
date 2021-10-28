@@ -1,4 +1,8 @@
 @model Photo
+@{
+    ViewData["Title"] = "MyPhotos | C+";
+}
+
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyPhotos", "MyPhotos"), ("","Details") }) />
 
 <div class="card rounded shadow p-3">

@@ -1,4 +1,7 @@
 @model IList<NewsArticle>
+@{
+    ViewData["Title"] = "MyNews | C+";
+}
  
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyNews") }) /> 
 

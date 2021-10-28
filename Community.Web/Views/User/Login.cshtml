@@ -31,7 +31,9 @@
         Need an Account? <a asp-controller="User" asp-action="Register">Register here</a>
     </div>
 </div>
-
+@{
+    ViewData["Title"] = "Login | C+";
+}
 @section Scripts {
 @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

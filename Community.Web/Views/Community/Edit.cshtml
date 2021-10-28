@@ -1,0 +1,35 @@
+@model Location
+@{
+    ViewData["Title"] = "Comunities | C+";
+}
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Community", "Communities"), ("","Edit") }) />
+<partial name="_DeleteCommunityModal" />
+<div class="card rounded shadow p-3">
+    <h3 class="mt-4 mb-4">@Model.Name</h3>
+    @* <button class="btn btn-danger my-1 " asp-roles="Admin" style="width: 100px;" data-toggle="modal" data-target="#deleteCommunityModal">Delete
+    </button> *@
+</div>
+
+<div class="card rounded shadow p-3">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" class="form-control"/>
+
+        <div class="form-group col">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label">Description</label>
+            <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+        </div>
+
+    </form>
+</div>

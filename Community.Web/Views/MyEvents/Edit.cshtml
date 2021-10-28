@@ -1,5 +1,9 @@
 @model Venue
 
+@{
+    ViewData["Title"] = "MyEvents | C+";
+}
+
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyEvents", "MyEvents"), ("","Edit") }) />
 <div class="card rounded shadow p-3">
     <h3 class="mb-3">Edit Venue</h3>

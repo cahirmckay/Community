@@ -1,5 +1,9 @@
 @model IList<Venue>
 
+@{
+    ViewData["Title"] = "MyEvents | C+";
+}
+
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/Home/DashBoard", "DashBoard"), ("","MyEvents") }) />
 
 <div class="container">

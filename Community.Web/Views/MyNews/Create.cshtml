@@ -1,5 +1,9 @@
 @model NewsArticle
 
+@{
+    ViewData["Title"] = "MyNews | C+";
+}
+
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/MyNews", "MyNews"), ("","Create") })>
 
 <div class="card rounded shadow p-3">

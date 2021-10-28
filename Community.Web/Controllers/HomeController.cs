@@ -7,23 +7,39 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Community.Web.ViewModels;
-
+using Community.Core.Models;
+using Community.Data.Services;
+using System.Web;
 
 
 namespace Community.Web.Controllers
 {
-    public class HomeController : Controller
+    
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private ILocationService locationService;
+        private IUserService userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ILocationService ls, IUserService us)
         {
             _logger = logger;
+            locationService = ls;
+            userService = us;
+
         }
 
         public IActionResult Index()
         {
-            return View();
+            var user = userService.GetUser(GetSignedInUserId());
+            if(user==null)
+            {
+                return View();
+            }
+            var userCommunity = locationService.GetLocation(user.CommunityId);
+            
+            return View(userCommunity);
+            
         }
 
         [Authorize]
@@ -32,16 +48,24 @@ namespace Community.Web.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Dashboard()
         {
             return View();
         }
 
+        public IActionResult CommunityIndex()
+        {
+            var c = locationService.GetAllLocations();
+            return View(c);
+        }
+    
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

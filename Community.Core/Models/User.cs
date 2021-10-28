@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 namespace Community.Core.Models
 {
@@ -23,5 +23,9 @@ namespace Community.Core.Models
 
         // used to store jwt auth token 
         public string Token { get; set; }
+
+        // Navigation property
+        [JsonIgnore]
+        public Location Location { get; set; }
     }
 }

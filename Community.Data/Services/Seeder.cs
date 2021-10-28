@@ -12,7 +12,7 @@ namespace Community.Data.Services
         // test data using an services 
          public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps,
           IPostService postService, INewsService newsService, IBookingService bookingService,
-          IEnvironmentService environmentService)
+          IEnvironmentService environmentService, ILocationService locationService)
         {
             svc.Initialise();
             bs.Initialise();
@@ -21,9 +21,11 @@ namespace Community.Data.Services
             newsService.Initialise();
             bookingService.Initialise();
             environmentService.Initialise();
+            locationService.Initialise();
 
             // add users
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);
+            svc.AddUser("test", "test@mail.com", 34, "male", 1,"test",  Role.Admin);
             svc.AddUser("C1 Guest", "c@mail.com", 34, "male", 1,"pw",  Role.Guest);
             svc.AddUser("Manager", "manager@mail.com", 34, "female", 2, "manager" ,Role.Manager);
             svc.AddUser("Guest", "guest@mail.com",  62, "other", 3, "guest",  Role.Guest);    
@@ -288,6 +290,15 @@ namespace Community.Data.Services
                 IssueType = IssueType.RoadWorks
             };
             environmentService.AddIssue(issue6);
+
+            //==============Communities Seed Data=================
+            var c = new Location
+            {
+                Id = 1,
+                Name = "Kilrea", 
+                Description = "Village in mid-ulster, everyone nearby is welcome",
+            };
+            locationService.AddLocation(c);
             
         }
     }

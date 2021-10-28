@@ -17,6 +17,7 @@ namespace Community.Test
         private INewsService newsService;
         private IBookingService bookingService;
         private IEnvironmentService environmentService;
+        private ILocationService locationService;
 
         public ServiceTests()
         {
@@ -27,6 +28,7 @@ namespace Community.Test
             newsService = new NewsServiceDb(new DatabaseContext());
             bookingService = new BookingServiceDb(new DatabaseContext());
             environmentService = new EnvironmentServiceDb(new DatabaseContext());
+            locationService = new LocationServiceDb(new DatabaseContext());
 
             userservice.Initialise();
 

@@ -28,6 +28,7 @@ namespace Community.Web.Controllers
             _svc = svc;
         }
 
+        
         public IActionResult Index()
         {
             var user = _svc.GetUser(GetSignedInUserId());

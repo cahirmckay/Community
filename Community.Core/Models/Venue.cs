@@ -17,10 +17,16 @@ namespace Community.Core.Models
         [Required]        
         public string Address { get; set; }
 
+        // the general description of the venue(up to 500 chars)
+        [Required]
+        [StringLength(500, MinimumLength = 10)]
         public string Description { get; set; }
 
+        [Required]
+        [Range(0,3)]
         public int SocialDistance {get; set;}
 
+        [Required]
         public int OriginalCapacity {get; set;}
 
         public int Capacity 

@@ -5,6 +5,8 @@ using Community.Data.Validators;
 
 namespace Community.Core.Models
 { 
+    //This is community model, calling it 'community' as originally designed causes issues
+    //because the project is called 'Community'
     public class Location
     {
         public int Id { get; set; }

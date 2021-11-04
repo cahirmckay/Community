@@ -29,6 +29,7 @@ namespace Community.Core.Models
 
         public DateTime CreatedOn {get; set;}
 
+        [Required]
         public Status Status{get; set;}
 
         //EF foreign Key

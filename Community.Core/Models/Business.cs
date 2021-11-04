@@ -8,7 +8,8 @@ namespace Community.Core.Models
     
     public class Business
     {
-                
+        
+        
         public int Id { get; set; }
         
         // name of buiness

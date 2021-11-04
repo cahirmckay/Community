@@ -9,8 +9,12 @@ namespace Community.Core.Models
     {
         public int CommentId{get; set;}
 
+        // Text body of comment  (up to 200 chars)
+        [Required]
+        [StringLength(200, MinimumLength = 5)]
         public string Description{get; set;}
 
+        [Required]
         public string Name{get; set;}
         
         public DateTime CreatedOn { get; set; }

@@ -22,10 +22,10 @@ namespace Community.Core.Models
         public string Name { get; set; }
 
         [Required]
-        public DateTime StartTime{get; set;}
-
+        public DateTime StartTime{get; set;} = DateTime.Today;
+        
         [Required]
-        public DateTime EndTime{get; set;}
+        public DateTime EndTime{get; set;} = DateTime.Today;
 
         public DateTime CreatedOn {get; set;}
 

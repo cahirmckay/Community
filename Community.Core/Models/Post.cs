@@ -15,7 +15,7 @@ namespace Community.Core.Models
 
     public class Post
     {
-        [Required]
+        
         public string Name{get; set;}
         
         public DateTime CreatedOn { get; set; }
@@ -29,7 +29,7 @@ namespace Community.Core.Models
         public PostType PostType{get; set;}
 
         //EF forgien key
-        [Required]
+        
         public int CommunityId {get; set;}
 
         // EF Relationship - a Post can have many Comments

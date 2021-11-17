@@ -21,6 +21,10 @@ namespace Community.Core.Models
         [Required]
         public string Name { get; set; }
 
+        
+        [Required]
+        public string Email {get; set;}
+
         [Required]
         public DateTime StartTime{get; set;} = DateTime.Today;
         

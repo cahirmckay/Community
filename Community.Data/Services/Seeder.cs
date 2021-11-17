@@ -25,6 +25,7 @@ namespace Community.Data.Services
 
             // add users
             //Kilrea Community
+            
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);
             svc.AddUser("Molly", "molly@mail.com", 22, "female", 1,"man",  Role.Manager);
             svc.AddUser("Harry", "harry@mail.com", 31, "male", 1,"pw",  Role.Guest);
@@ -341,7 +342,7 @@ namespace Community.Data.Services
                 Status = Status.Confirmed,
                 VenueId = 1,
             };
-            bookingService.AddEvent(ev);
+            bookingService.AddEvent(ev, svc.GetUser(1));
             
 
             //===========MyEnvironment related data

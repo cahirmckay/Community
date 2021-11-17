@@ -83,7 +83,7 @@ namespace Community.Data.Services
                      .FirstOrDefault(e => e.Id == id);
         }
 
-        public Event AddEvent(Event e)
+        public Event AddEvent(Event e, User u)
         {
             //Creates a new instance of a event so more than can be created for each venue
             var ev = new Event
@@ -94,6 +94,7 @@ namespace Community.Data.Services
                 CreatedOn= DateTime.Today,
                 Status = e.Status,
                 VenueId = e.VenueId,
+                Email = u.Email
                 
             };
 

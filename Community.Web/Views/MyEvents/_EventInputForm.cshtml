@@ -8,6 +8,12 @@
 </div>
 
 <div class="form-group col">
+    <label asp-for="Email" class="control-label">Contact Email</label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="form-group col">
     <label asp-for="StartTime" type="time" class="control-label">Select start time</label>
     <input asp-for="StartTime"   class="form-control" />
     <span asp-validation-for="StartTime" class="text-danger"></span>

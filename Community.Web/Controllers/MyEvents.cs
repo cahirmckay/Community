@@ -127,7 +127,8 @@ namespace Community.Web.Controllers
             {
                 VenueId = id, 
                 CreatedOn = DateTime.Now,
-                Status = Status.Unconfirmed
+                Status = Status.Unconfirmed,
+                Email = user.Email
             };
 
             return View("AddEvent", booking);
@@ -140,6 +141,7 @@ namespace Community.Web.Controllers
         {
             var venue = svc.GetVenue(e.VenueId);
             
+            
             if (venue == null)
             {
                 Alert($"NULL", AlertType.danger);
@@ -148,7 +150,8 @@ namespace Community.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                svc.AddEvent(e);
+                var user = userService.GetUser(GetSignedInUserId());
+                svc.AddEvent(e, user);
                 Alert($"Booking request at {venue.Name} has been made", AlertType.success);
                 return RedirectToAction("Details", new{ Id = e.VenueId});
             }

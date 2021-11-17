@@ -18,7 +18,7 @@ namespace Community.Data.Services
         bool DeleteVenue(int id);
         bool UpdateVenue(Venue v);
         Event GetEventById(int id);
-        Event AddEvent(Event e);
+        Event AddEvent(Event e, User u);
         bool DeleteEvent(int id);
         bool UpdateEvent(Event e);
     }

@@ -11,7 +11,7 @@ using Community.Data.Services;
 
 namespace Community.Web.Controllers
 {
-    [Authorize]
+    
     public class CommunityController : BaseController
     {
         private ILocationService svc;

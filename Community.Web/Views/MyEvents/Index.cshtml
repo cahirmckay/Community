@@ -9,7 +9,7 @@
 <div class="container">
     <div class="card rounded shadow p-3">
         <h3 class="mb-3">Venue List</h3>
-        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEvents" asp-action="Create">Add a Venue</a>
+        <a class="btn btn-sm btn-primary mb-3" asp-controller="MyEvents" asp-action="Create" id="AddVenue">Add a Venue</a>
     </div>
 
     <div class="shadow p-2" >
@@ -32,7 +32,7 @@
                         <td>@venue.Address</td>
                     
                         <td>
-                            <a class="btn btn-primary my-1 " style="width: 80px;" asp-controller="MyEvents" asp-action="Details"
+                            <a class="btn btn-primary my-1" style="width: 80px;" asp-controller="MyEvents" asp-action="Details"
                             asp-route-id="@venue.Id">View</a>
                             <a class="btn btn-info my-1" style="width: 80px;" asp-roles="Admin,Manager" asp-controller="MyEvents" asp-action="Edit" asp-route-id=@venue.Id>Edit</a>
                         

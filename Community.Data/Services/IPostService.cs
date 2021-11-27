@@ -5,13 +5,13 @@ using Community.Core.Models;
 
 namespace Community.Data.Services
 {
-    // This interface describes the operations that a UserService class should implement
+    // This interface describes the operations that a PostService class should implement
     public interface IPostService
     {
         // Initialise the repository - only to be used during development 
         void Initialise();
 
-        // ---------------- User Management --------------
+        // ---------------- Post Management --------------
         IList<Post> GetAllPosts(User u);
         Post GetPost(int id);
         Post AddPost(Post b);

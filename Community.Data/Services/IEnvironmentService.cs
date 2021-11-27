@@ -5,7 +5,7 @@ using Community.Core.Models;
 
 namespace Community.Data.Services
 {
-    // This interface describes the operations that a UserService class should implement
+    // This interface describes the operations that a EnvironmentService class should implement
     public interface IEnvironmentService
     {
         // Initialise the repository - only to be used during development 

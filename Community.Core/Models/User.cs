@@ -36,8 +36,6 @@ namespace Community.Core.Models
 
         // used to store jwt auth token 
         public string Token { get; set; }
-
-        // Navigation property
         
     }
 }

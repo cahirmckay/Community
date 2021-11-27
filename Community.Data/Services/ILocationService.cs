@@ -5,7 +5,7 @@ using Community.Core.Models;
 
 namespace Community.Data.Services
 {
-    // This interface describes the operations that a UserService class should implement
+    // This interface describes the operations that a LocationService class should implement
     public interface ILocationService
     {
         // Initialise the repository - only to be used during development 

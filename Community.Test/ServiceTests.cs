@@ -1205,6 +1205,9 @@ namespace Community.Test
         [Fact]
         public void Event_AddEvent_ShouldAddOneToEventCount()
         {
+
+            var user = userservice.AddUser("admin", "admin@mail.com", 52, "female", 3, "admin", Role.Admin);
+
             var venue = new Venue
             {
                 Name = "The Marian Hall",
@@ -1226,7 +1229,7 @@ namespace Community.Test
                 Status = Status.Confirmed,
                 VenueId = 1,
             };
-            bookingService.AddEvent(ev);
+            bookingService.AddEvent(ev, user);
 
             Assert.Equal(1,venue.Events.Count);
         }
@@ -1245,6 +1248,8 @@ namespace Community.Test
             };
             bookingService.AddVenue(venue);
 
+            var user = userservice.AddUser("admin", "admin@mail.com", 52, "female", 3, "admin", Role.Admin);
+
             var e2 = new Event
             {
                 Name = "Christmas Party",
@@ -1255,7 +1260,7 @@ namespace Community.Test
                 Status = Status.Confirmed,
                 VenueId = 1,
             };
-            bookingService.AddEvent(e2);
+            bookingService.AddEvent(e2, user);
 
             var e1 = new Event
             {
@@ -1268,7 +1273,7 @@ namespace Community.Test
                 VenueId = 1,
                 Id =1
             };
-            bookingService.AddEvent(e1);
+            bookingService.AddEvent(e1, user);
 
             bookingService.DeleteEvent(e1.Id);
 

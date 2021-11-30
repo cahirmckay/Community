@@ -11,7 +11,6 @@ namespace Community.Data.Services
     {
         private readonly DatabaseContext ctx;
         
-
         public BusinessServiceDb(DatabaseContext db)
         {
             ctx = db; 
@@ -25,7 +24,6 @@ namespace Community.Data.Services
         //-------------MyPlaces related options---------------------------
         public IList<Business> GetAllBusiness(User u)
         {
-
             return ctx.Businesses
                         .Where(b => b.CommunityId == u.CommunityId)
                         .ToList();            

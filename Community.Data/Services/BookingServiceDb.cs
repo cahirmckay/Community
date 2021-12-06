@@ -10,8 +10,9 @@ namespace Community.Data.Services
     public class BookingServiceDb : IBookingService
     {
         private readonly DatabaseContext ctx;
-        
 
+
+        //Confirgured Via DI
         public BookingServiceDb(DatabaseContext db)
         {
             ctx = db; 
@@ -23,6 +24,9 @@ namespace Community.Data.Services
         }
 
         //=======Venue related operations=========
+
+
+        //only return venues from the users community
         public IList<Venue> GetAllVenues(User u)
         {
             return ctx.Venues

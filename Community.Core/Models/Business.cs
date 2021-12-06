@@ -5,10 +5,9 @@ using Community.Data.Validators;
 
 namespace Community.Core.Models
 {
-    
+    //business models will be used for business views and reviews
     public class Business
     {
-        
         
         public int Id { get; set; }
         

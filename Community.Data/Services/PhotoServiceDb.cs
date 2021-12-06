@@ -10,8 +10,8 @@ namespace Community.Data.Services
     public class PhotoServiceDb : IPhotoService
     {
         private readonly DatabaseContext ctx;
-        
 
+        //Confirgured Via DI
         public PhotoServiceDb(DatabaseContext db)
         {
             ctx = db; 
@@ -22,6 +22,9 @@ namespace Community.Data.Services
            ctx.Initialise(); 
         }
 
+        //-------------MyPhotos related options------
+
+        //Only return photos in their community
         public IList<Photo> GetAllPhotos(User u)
         {
              return ctx.Photos

@@ -22,7 +22,9 @@ namespace Community.Data.Services
            ctx.Initialise(); 
         }
 
-        //-------------MyPlaces related options---------------------------
+        //-------------MyChats related options---------------------------
+
+        //Only return posts in their community
         public IList<Post> GetAllPosts(User u)
         {
 

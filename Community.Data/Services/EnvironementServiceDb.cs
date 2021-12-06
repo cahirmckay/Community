@@ -10,8 +10,8 @@ namespace Community.Data.Services
     public class EnvironmentServiceDb : IEnvironmentService
     {
         private readonly DatabaseContext ctx;
-        
 
+        //Confirgured Via DI
         public EnvironmentServiceDb(DatabaseContext db)
         {
             ctx = db; 

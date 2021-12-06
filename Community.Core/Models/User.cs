@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 namespace Community.Core.Models
 {
-    // Add User roles relevant to your application
+    
     public enum Role { Admin, Manager, Guest }
 
     public class User

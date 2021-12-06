@@ -16,7 +16,7 @@ namespace Community.Data.Services
         Photo GetPhoto(int id);
         Photo AddPhoto(Photo p);
         bool DeletePhoto(int id);
-        // bool UpdatePhoto(Photo p);
+        
       
     }
     

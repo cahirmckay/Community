@@ -11,7 +11,7 @@ namespace Community.Data.Services
     {
         private readonly DatabaseContext ctx;
         
-
+        //Confirgured Via DI
         public NewsServiceDb(DatabaseContext db)
         {
             ctx = db; 
@@ -22,7 +22,9 @@ namespace Community.Data.Services
            ctx.Initialise(); 
         }
 
-        //-------------MyPlaces related options---------------------------
+        //-------------MyNews related options---------------------------
+
+        //Only return news articles in their community
         public IList<NewsArticle> GetAllNewsArticles(User u)
         {
 

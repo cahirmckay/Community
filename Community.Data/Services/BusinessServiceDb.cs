@@ -10,7 +10,8 @@ namespace Community.Data.Services
     public class BusinessServiceDb : IBusinessService
     {
         private readonly DatabaseContext ctx;
-        
+
+        //Confirgured Via DI
         public BusinessServiceDb(DatabaseContext db)
         {
             ctx = db; 
@@ -22,6 +23,8 @@ namespace Community.Data.Services
         }
 
         //-------------MyPlaces related options---------------------------
+
+        //only return businesses from the users community
         public IList<Business> GetAllBusiness(User u)
         {
             return ctx.Businesses

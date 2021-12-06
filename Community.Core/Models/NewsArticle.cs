@@ -14,6 +14,7 @@ namespace Community.Core.Models
         [Required]
         public string Headline { get; set; }
 
+        //link to external article
         [Required]        
         public string Source { get; set; }
 

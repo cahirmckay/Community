@@ -16,6 +16,7 @@ namespace Community.Core.Models
     public class Post
     {
         
+        //Name of Post, not required as will be passed from the get signed in user method
         public string Name{get; set;}
         
         public DateTime CreatedOn { get; set; }

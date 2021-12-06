@@ -17,6 +17,7 @@ namespace Community.Data.Services
         Post AddPost(Post b);
         bool DeletePost(int id);
         bool UpdatePost(Post m);
+        // ---------Comment Management--------------
         Comment GetCommentById(int id);
         Comment AddComment(Comment c);
         bool DeleteComment(int id);

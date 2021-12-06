@@ -8,8 +8,8 @@ namespace Community.Data.Services
 {
     public static class Seeder
     {
-        // use this class to seed the database with dummy 
-        // test data using an services 
+        //class to seed the database with dummy 
+        //test data using an services 
          public static void Seed(IUserService svc, IBusinessService bs, IPhotoService ps,
           IPostService postService, INewsService newsService, IBookingService bookingService,
           IEnvironmentService environmentService, ILocationService locationService)
@@ -24,6 +24,7 @@ namespace Community.Data.Services
             locationService.Initialise();
 
             // add users
+            
             //Kilrea Community
             
             svc.AddUser("Administrator", "admin@mail.com", 34, "male", 1,"admin",  Role.Admin);

@@ -11,7 +11,7 @@ namespace Community.Data.Services
     {
         private readonly DatabaseContext ctx;
         
-
+        //Confirgured Via DI
         public LocationServiceDb(DatabaseContext db)
         {
             ctx = db; 

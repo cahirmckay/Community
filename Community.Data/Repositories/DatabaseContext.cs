@@ -26,9 +26,7 @@ namespace Community.Data.Repositories
         public DbSet<Location> Locations {get; set;}
 
 
-        
-        // Configure the context to use Specified database. We are using 
-        // Sqlite database as it does not require any additional installations.
+        //***************ORGINIAL METHOD OF DATABASE CONNECTION USING MYSQL***********************
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
         //    optionsBuilder                  
@@ -39,6 +37,7 @@ namespace Community.Data.Repositories
         // }
         //public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {}
 
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder               

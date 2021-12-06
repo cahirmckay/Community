@@ -17,8 +17,10 @@ namespace Community.Core.Models
         [StringLength(500, MinimumLength = 10)]
         public string Description{get; set;}
 
+        //reading an image
         public byte[] PhotoData {get; set;}
 
+        //converting image to base64 string
         public string PhotoDataUrl{get; set;}
 
         //EF forgien key

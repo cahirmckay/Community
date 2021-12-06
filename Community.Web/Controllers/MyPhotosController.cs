@@ -17,6 +17,7 @@ namespace Community.Web.Controllers
     [Authorize]
     public class MyPhotosController : BaseController
     {
+        //user service passed in also to be able pass the current users CommunityId to the service layer
         private IPhotoService svc;
         private IUserService userService;
 
@@ -46,6 +47,7 @@ namespace Community.Web.Controllers
         public IActionResult Create(Photo p)
         {
             var files = HttpContext.Request.Form.Files;
+            //reads image from memory stream and converts to a string to store in the DB
             foreach (var file in files)
             {
                 

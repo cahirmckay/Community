@@ -14,6 +14,7 @@ namespace Community.Web.Controllers
     [Authorize]
     public class MyNewsController : BaseController
     {
+        //user service passed in also to be able pass the current users CommunityId to the service layer
         private INewsService svc;
         private IUserService userService;
         

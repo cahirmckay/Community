@@ -15,6 +15,7 @@ namespace Community.Web.Controllers
     [Authorize]
     public class MyPlacesController : BaseController
     {
+        //user service passed in also to be able pass the current users CommunityId to the service layer
         private IBusinessService svc;
         private IUserService userService;
 

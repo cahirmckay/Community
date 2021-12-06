@@ -32,27 +32,27 @@ namespace Community.Web
             return  new ClaimsPrincipal(claims);
         }
         
-        // method to sign a users token 
-        // public static User SignJwtToken(User user, string secret) {     
-        //     // generate Jwt token
-        //     var tokenHandler = new JwtSecurityTokenHandler();
-        //     var key = Encoding.ASCII.GetBytes(secret);
-        //     var tokenDescriptor = new SecurityTokenDescriptor {
-        //         Subject = new ClaimsIdentity(new Claim[]  {
-        //             new Claim(ClaimTypes.Name, user.Id.ToString()),
-        //             new Claim(ClaimTypes.Email, user.Email),
-        //             new Claim(ClaimTypes.Role, user.Role.ToString())
-        //         }),
-        //         Expires = DateTime.UtcNow.AddDays(7),
-        //         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
-        //                                             SecurityAlgorithms.HmacSha256Signature)
-        //     };
-        //     var token = tokenHandler.CreateToken(tokenDescriptor);
-        //     // return user after adding token and removing password
-        //     user.Token = tokenHandler.WriteToken(token);
-        //     user.Password = null; // remove the password
-        //     return user;
-        // }
+        //method to sign a users token 
+        public static User SignJwtToken(User user, string secret) {     
+            // generate Jwt token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(secret);
+            var tokenDescriptor = new SecurityTokenDescriptor {
+                Subject = new ClaimsIdentity(new Claim[]  {
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
+                                                    SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            // return user after adding token and removing password
+            user.Token = tokenHandler.WriteToken(token);
+            user.Password = null; // remove the password
+            return user;
+        }
 
         // method to Build a JWT Token 
         public static string BuildJwtToken(User user, IConfiguration _configuration)

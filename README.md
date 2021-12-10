@@ -1,4 +1,3 @@
-o
 DotNet Core 5  Community Solution
 =====================================
 

@@ -86,6 +86,8 @@ namespace Community.Web.Controllers
         [HttpPost]
         public IActionResult Create(Business b)
         {
+            var user = userService.GetUser(GetSignedInUserId());
+            b.CommunityId = user.CommunityId;
             if (ModelState.IsValid)
             {
                 var added = svc.AddBusiness(b);

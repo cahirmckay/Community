@@ -7,8 +7,7 @@
     <div class="bg text-center" style="min-height: 375px;">
         <h1 class="display-4" >Welcome To Community+</h1>
         <h4 class="display-4" >In this together</h1>
-            <p> <a href="/User/Register">Ready to Join a Community?</a></p>
-            
+            <p> <a href="/User/Register">Ready to Join a Community?</a></p>      
     </div>
 </div>
 
@@ -16,9 +15,6 @@
 <div asp-authorize class="card">
     <div asp-roles="Admin, Manager, Guest" class="card-body">
         <h4 class="card-title">Welcome to @Model.Name Community</h4>
-       
-        <p asp-roles="Admin, Manager, Guest">@Model.Description</p>
-        
-
+        <p asp-roles="Admin, Manager, Guest">@Model.Description</p>  
     </div>
 </div> 

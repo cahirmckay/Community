@@ -21,11 +21,11 @@
     </table>
     <div class="row pl-3 mt-3 ml-2">
         <div class="col-4">
-            <a asp-action="AddComment" asp-route-id="@Model.Id" class="btn btn-sm btn-primary mr-2" id = "AddComment">
+            <a asp-action="AddComment" asp-route-id="@Model.Id" class="btn btn-sm btn-primary mr-2 mb-2" id = "AddComment">
                 <i class="bi bi-plus-square-dotted mr-1"></i> Add a comment 
             </a>
-            <a asp-controller="MyChats" asp-action="Index" class="btn btn-sm btn-secondary mr-2" style="width: 80px;">Index</a>
-            <a asp-controller="MyChats"  asp-action="Edit" asp-route-id="@Model.Id"  class="btn btn-sm btn-info  mr-2" style="width: 80px;">Edit</a>
+            <a asp-controller="MyChats" asp-action="Index" class="btn btn-sm btn-secondary mr-2 mb-2" >Index</a>
+            <a asp-controller="MyChats"  asp-action="Edit" asp-route-id="@Model.Id"  class="btn btn-sm btn-info  mr-2 mb-2" >Edit</a>
 
             </button>
         </div>

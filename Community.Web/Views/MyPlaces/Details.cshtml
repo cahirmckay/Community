@@ -3,6 +3,7 @@
 
 <div class="card rounded shadow p-3">
     <h3 class="mb-3">Business Details</h3>
+    <a class="btn btn-danger" asp-roles="Admin,Manager" style="width: 80px;" asp-controller="MyPlaces" asp-action="Delete" asp-route-id=@Model.Id>Delete</a> 
 </div>
 
 <div class="card shadow rounded p-3">
@@ -32,12 +33,13 @@
     <!-- action options -->
     <div class="row pl-3 mt-3 ml-2">
         <div class="col-4">
-            <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-sm btn-info mr-2" id= "AddReview">
+            <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-sm btn-info mr-2 mb-2" id= "AddReview">
                 <i class="bi bi-plus-square-dotted mr-1"></i> Add review
             </a>
-            <a asp-controller="MyPlaces" asp-action="Index" class="btn btn-sm btn-primary mr-2">Index</a>
-            <a asp-controller="MyPlaces" asp-action="Edit" asp-roles="Admin,Manager" asp-route-id="@Model.Id"  class="btn btn-sm btn-secondary  mr-2">Edit</a>
-            <a class="btn btn-danger" asp-roles="Admin,Manager" asp-controller="MyPlaces" asp-action="Delete" asp-route-id=@Model.Id>Delete</a> 
+            <a asp-controller="MyPlaces" asp-action="Index" class="btn btn-sm btn-primary mr-2 mb-2">Index</a>
+            <a asp-controller="MyPlaces" asp-action="Edit" asp-roles="Admin,Manager" asp-route-id="@Model.Id"  class="btn btn-sm btn-secondary  mr-2 mb-2">Edit</a>
+            
+            
 
             </button>
         </div>
